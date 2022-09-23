@@ -8,7 +8,7 @@ export function createEventBus() {
     queue[name].push(callback)
   }
 
-  function off(name: string, callback) {
+  function off(name: string, callback: NinjaToasterEventCallback) {
     if (queue[name]) {
       for (let i = 0; i < queue[name].length; i++) {
         if (queue[name][i] === callback) {

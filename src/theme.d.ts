@@ -1,5 +1,5 @@
 export interface NinjaToasterTheme {
-  containerId?: string;
+  containerId: string;
   containerClass?: string;
   wrapperClass?: string;
 }

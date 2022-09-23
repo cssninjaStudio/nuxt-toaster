@@ -4,11 +4,14 @@ import { defu } from 'defu'
 import type { NinjaToasterTheme } from '../theme'
 import type { NinjaToasterProps } from '../props'
 import type { NinjaToasterRenderQueue } from './queue'
-import { createEventBus } from './events'
+import { type NinjaToastEventBus, createEventBus } from './events'
 import NinjaToaster from './components/NinjaToaster'
+
+// @ts-expect-error - Nuxt 3 auto-imports
 import { useNuxtApp, useRuntimeConfig } from '#app'
 
 function createElement() {
+  // @ts-expect-error - Nuxt 3 context
   if (process.server) {
     return null
   }
@@ -16,7 +19,14 @@ function createElement() {
   return document.createElement('div')
 }
 
-function mountWithContext(app: App, component: any, props: NinjaToasterProps) {
+function mountWithContext(
+  app: App,
+  component: any,
+  props: NinjaToasterProps & {
+    events: NinjaToastEventBus
+    queues: Map<string, NinjaToasterRenderQueue>
+  }
+) {
   const el = createElement()
 
   if (el) {
@@ -58,6 +68,8 @@ export function createNinjaToaster(
     return new Promise<NinjaToasterShow>((resolve) => {
       mountWithContext(app, NinjaToaster, {
         ...props,
+        events,
+        queues,
         onShow: (toast: NinjaToasterShow) => {
           resolve(toast)
 
@@ -67,6 +79,7 @@ export function createNinjaToaster(
         }
       })
 
+      // @ts-expect-error - Nuxt 3 context
       if (process.server) {
         resolve({
           el: null,
@@ -77,8 +90,6 @@ export function createNinjaToaster(
   }
 
   function clearAll() {
-    console.log('clear all')
-
     events.emit('clear')
     queues.forEach((queue) => {
       queue.clear()
@@ -89,8 +100,6 @@ export function createNinjaToaster(
   function clear(theme: NinjaToasterTheme | string) {
     const containerId = typeof theme === 'string' ? theme : theme.containerId
 
-    console.log('clear', containerId)
-
     events.emit(`clear-${containerId}`)
     if (queues.has(containerId)) {
       queues.get(containerId)?.clear()
@@ -98,8 +107,6 @@ export function createNinjaToaster(
   }
 
   return {
-    events,
-    queues,
     show,
     clearAll,
     clear
