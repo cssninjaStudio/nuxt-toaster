@@ -3,14 +3,20 @@ import { fileURLToPath } from 'url'
 import { addImports, addPlugin, defineNuxtModule } from '@nuxt/kit'
 import type { NinjaToasterBaseProps } from './props'
 
-export type ModuleOptions = NinjaToasterBaseProps
+export interface ModuleOptions {
+  base?: NinjaToasterBaseProps
+  installPlugin?: boolean
+}
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: '@cssninja/nuxt-toaster',
     configKey: 'toaster'
   },
-  defaults: {},
+  defaults: {
+    base: {},
+    installPlugin: true
+  },
   setup(options, nuxt) {
     const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
     nuxt.options.build.transpile.push(runtimeDir)
@@ -25,9 +31,16 @@ export default defineNuxtModule<ModuleOptions>({
       as: 'useNinjaToasterProgress',
       from: resolve(runtimeDir, 'composables/useNinjaToasterState')
     })
+    addImports({
+      name: 'createNinjaToaster',
+      as: 'createNinjaToaster',
+      from: resolve(runtimeDir, 'create')
+    })
 
-    addPlugin(resolve(runtimeDir, 'plugin'))
+    if (options.installPlugin) {
+      addPlugin(resolve(runtimeDir, 'plugin'))
+    }
 
-    nuxt.options.runtimeConfig.public.nt = options as any
+    nuxt.options.runtimeConfig.public.nt = options.base as any
   }
 })
