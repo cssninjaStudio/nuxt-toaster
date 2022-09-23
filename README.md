@@ -186,7 +186,7 @@ export default defineNuxtConfig({
 ```
 
 2. Create a custom toast component
-```html
+```vue
 <script setup lang="ts">
 // components/MyToast.vue
 const props = defineProps<{
