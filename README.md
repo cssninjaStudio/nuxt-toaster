@@ -134,7 +134,13 @@ $nt.show({
 > <body>
 >   <!-- ... -->
 >   <div id="nt-container" class="nt-container-class">
->     <div class="nt-wrapper-class">Hello world</div>
+>     <div
+>       class="nt-wrapper-class"
+>       role="alert"
+>       tabindex="0"
+>     >
+>       Hello world
+>     </div>
 >   </div>
 > </body>
 > ```
