@@ -45,7 +45,9 @@ export default defineNuxtPlugin(() => {
         const config = useRuntimeConfig()
         const app = useNuxtApp().vueApp
         const userProps =
-          typeof options === 'string' ? { content: options } : options
+          typeof options === 'string' || typeof options === 'function'
+            ? { content: options }
+            : options
         const props = defu(config.public.nt, userProps)
 
         mountToast(
