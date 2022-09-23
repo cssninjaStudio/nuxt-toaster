@@ -15,7 +15,7 @@ function createElement() {
   return document.createElement('div')
 }
 
-function mountToast(component, props, app: App) {
+function mountWithContext(app: App, component: any, props: NinjaToasterProps) {
   const el = createElement()
 
   if (el) {
@@ -33,14 +33,16 @@ export interface NinjaToasterShow {
   close: () => void
 }
 
-export function createNinjaToaster(createOptions: NinjaToasterProps = {}) {
+export function createNinjaToaster(
+  createOptions: Omit<NinjaToasterProps, 'content'> = {}
+) {
   const events = createEventBus()
   const queues: Map<string, NinjaToastRenderQueue> = new Map()
 
   return {
     events,
     queues,
-    show(options: NinjaToasterProps | string) {
+    show(options: NinjaToasterProps | string | number) {
       const config = useRuntimeConfig()
       const app = useNuxtApp().vueApp
       const userProps =
@@ -49,23 +51,23 @@ export function createNinjaToaster(createOptions: NinjaToasterProps = {}) {
         typeof options === 'function'
           ? { content: options }
           : options
-      const props = defu(config.public.nt, createOptions, userProps)
+      const props: NinjaToasterProps = defu(
+        config.public.nt,
+        createOptions,
+        userProps
+      )
 
       return new Promise<NinjaToasterShow>((resolve) => {
-        mountToast(
-          NinjaToaster,
-          {
-            ...props,
-            onShow: (toast) => {
-              resolve(toast)
+        mountWithContext(app, NinjaToaster, {
+          ...props,
+          onShow: (toast: NinjaToasterShow) => {
+            resolve(toast)
 
-              if (props.onShow) {
-                props.onShow(toast)
-              }
+            if (props.onShow) {
+              props.onShow(toast)
             }
-          },
-          app
-        )
+          }
+        })
 
         if (process.server) {
           resolve({

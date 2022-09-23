@@ -33,13 +33,23 @@ async function showAdvancedToast() {
   i++
   const toast = await $nt.show({
     content: () =>
-      h(AdvancedToast, { message: `Hello ${i} from Nuxt module playground!` }),
+      h(AdvancedToast, {
+        message: `Hello ${i} from Nuxt module playground!`
+      }),
     dismissible: false,
     maxToasts: 1,
     theme: {
       containerId: 'nt-container-top-left',
-      containerClass:
-        'absolute inset-0 pointer-events-none p-4 flex flex-col items-end gap-2',
+      containerClass: [
+        'absolute',
+        'inset-0',
+        'pointer-events-none',
+        'p-4',
+        'flex',
+        'flex-col',
+        'items-end',
+        'gap-2'
+      ].join(' '),
       wrapperClass: [
         'pointer-events-auto',
         'rounded',
