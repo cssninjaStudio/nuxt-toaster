@@ -16,14 +16,24 @@ function showCustomToast() {
   i++
   $nt.show({
     content: () =>
-      h(CustomToast, { message: `Hello ${i} from Nuxt module playground!` }),
+      h(CustomToast, {
+        message: `Hello ${i} from Nuxt module playground!`
+      }),
     transition: {
       name: 'fadeOut'
     },
     theme: {
       containerId: 'nt-container-bottom-right',
-      containerClass:
-        'absolute inset-0 pointer-events-none p-4 flex flex-col-reverse items-start gap-2',
+      containerClass: [
+        'absolute',
+        'inset-0',
+        'pointer-events-none',
+        'p-4',
+        'flex',
+        'flex-col-reverse',
+        'items-start',
+        'gap-2'
+      ].join(' '),
       wrapperClass: 'pointer-events-auto cursor-pointer'
     }
   })
@@ -73,8 +83,11 @@ async function showAdvancedToast() {
 
   toast.el.focus()
 }
-function clearToast() {
-  $nt.clear()
+function clearAllToast() {
+  $nt.clearAll()
+}
+function clearTopLeftToast() {
+  $nt.clear('nt-container-top-left')
 }
 </script>
 
@@ -97,11 +110,17 @@ function clearToast() {
       class="m-1 rounded border border-slate-200 px-2 py-1"
       @click="showAdvancedToast"
     >
-      add advanced toast
+      show advanced toast
     </button>
     <button
       class="m-1 rounded border border-slate-200 px-2 py-1"
-      @click="clearToast"
+      @click="clearTopLeftToast"
+    >
+      clear advanced toasts
+    </button>
+    <button
+      class="m-1 rounded border border-slate-200 px-2 py-1"
+      @click="clearAllToast"
     >
       clear all toast
     </button>

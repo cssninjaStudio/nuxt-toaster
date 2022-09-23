@@ -1,9 +1,9 @@
-export type NinjaToastEventCallback = (...args: any) => void
+export type NinjaToasterEventCallback = (...args: any) => void
 
 export function createEventBus() {
-  const queue: Record<string, NinjaToastEventCallback[]> = {}
+  const queue: Record<string, NinjaToasterEventCallback[]> = {}
 
-  function on(name: string, callback: NinjaToastEventCallback) {
+  function on(name: string, callback: NinjaToasterEventCallback) {
     queue[name] = queue[name] || []
     queue[name].push(callback)
   }

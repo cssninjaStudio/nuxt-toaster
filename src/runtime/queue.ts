@@ -1,14 +1,14 @@
-export interface NinjaToastQueue {
+export interface NinjaToasterQueue {
   until: () => boolean
   callback: () => void
 }
 
 export function createRenderQueue() {
   // last in last out queue
-  const queue: NinjaToastQueue[] = []
-  let timer
+  const queue: NinjaToasterQueue[] = []
+  let timer: ReturnType<typeof setTimeout> | null = null
 
-  function add(item: NinjaToastQueue) {
+  function add(item: NinjaToasterQueue) {
     queue.push(item)
 
     // wait until verify is true, then execute the queue
@@ -21,7 +21,7 @@ export function createRenderQueue() {
     }
   }
 
-  function remove(item: NinjaToastQueue) {
+  function remove(item: NinjaToasterQueue) {
     const index = queue.indexOf(item)
     if (index !== -1) {
       queue.splice(index, 1)
@@ -70,4 +70,4 @@ export function createRenderQueue() {
   }
 }
 
-export type NinjaToastRenderQueue = ReturnType<typeof createRenderQueue>
+export type NinjaToasterRenderQueue = ReturnType<typeof createRenderQueue>

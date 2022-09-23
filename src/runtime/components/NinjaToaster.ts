@@ -15,7 +15,7 @@ import type { NinjaToasterProps } from '../../props'
 import { usePausableTimeout } from '../composables/usePausableTimeout'
 import { useNinjaToasterContainer } from '../composables/useNinjaToasterContainer'
 import { createNinjaToasterState } from '../composables/useNinjaToasterState'
-import { type NinjaToastRenderQueue, createRenderQueue } from '../queue'
+import { type NinjaToasterRenderQueue, createRenderQueue } from '../queue'
 import { useNuxtApp } from '#app'
 
 export default defineComponent({
@@ -65,7 +65,7 @@ export default defineComponent({
     const rootElement = ref<HTMLElement>()
     const nuxt = useNuxtApp()
     const events = nuxt.$nt.events
-    let queue: NinjaToastRenderQueue
+    let queue: NinjaToasterRenderQueue
 
     if (nuxt.$nt.queues.has(containerId)) {
       queue = nuxt.$nt.queues.get(containerId)
@@ -166,7 +166,6 @@ export default defineComponent({
     }
     function onAfterLeave(el: Element) {
       emit('close')
-      events.off('clear', close)
 
       if (typeof props.transition?.onAfterLeave === 'function') {
         props.transition.onAfterLeave(el)
@@ -182,10 +181,13 @@ export default defineComponent({
 
     onMounted(() => {
       show()
+
       events.on('clear', close)
+      events.on(`clear-${containerId}`, close)
     })
     onBeforeUnmount(() => {
       events.off('clear', close)
+      events.off(`clear-${containerId}`, close)
     })
 
     createNinjaToasterState({

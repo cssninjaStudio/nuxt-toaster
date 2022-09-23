@@ -1,12 +1,12 @@
 import type { Component, TransitionProps } from 'vue'
-import type { NinjaToasterShow } from './runtime/plugin'
+import type { NinjaToasterShow } from './runtime/create'
 
-import type { NinjaToastTheme } from './theme'
+import type { NinjaToasterTheme } from './theme'
 
 export interface NinjaToasterBaseProps {
   duration?: number
   transition?: TransitionProps
-  theme?: NinjaToastTheme
+  theme?: NinjaToasterTheme
   dismissible?: boolean
   pauseOnHover?: boolean
   maxToasts?: number
