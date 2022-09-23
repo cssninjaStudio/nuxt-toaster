@@ -212,7 +212,13 @@ const {
 </script>
 
 <template>
-  <div :class="`my-toaster-${props.info}`">
+  <div
+    class="rounded p-4"
+    :class="[
+      props.type === 'info' && 'bg-indigo-600 text-indigo-500'
+      props.type === 'error' && 'bg-rose-600 text-rose-500'
+    ]"
+  >
     <h1>{{ props.title }}</h1>
     <p v-if="props.message">{{ props.message }}</p>
     <button @click="close()">Close</button>
@@ -232,12 +238,36 @@ interface ToasterOptions {
 }
 
 export default defineNuxtPlugin(() => {
-  // define default show options here
+  // define or import a theme
+  const theme = {
+    containerId: 'nt-container-bottom-right',
+    containerClass: [
+      'absolute',
+      'inset-0',
+      'pointer-events-none',
+      'p-4',
+      'flex',
+      'flex-col-reverse',
+      'items-start',
+      'gap-2'
+    ].join(' '),
+    wrapperClass: [
+      'pointer-events-auto',
+      'cursor-pointer',
+    ].join(' '),
+  }
+
+  // set default show options here
   const nt = createNinjaToaster({
-    theme: {
-      containerId: 'my-toaster-container',
-      containerClass: 'my-toaster-container-class',
-      wrapperClass: 'my-toaster-wrapper-class',
+    theme,
+    maxToasts: 5,
+    transition: {
+      enterActiveClass: 'transition duration-300 ease-out',
+      enterFromClass: 'transform translate-x-full opacity-0',
+      enterToClass: 'transform translate-x-0 opacity-100',
+      leaveActiveClass: 'transition duration-300 ease-in',
+      leaveFromClass: 'transform translate-x-0 opacity-100',
+      leaveToClass: 'transform translate-x-full opacity-0'
     }
   })
 
@@ -250,13 +280,23 @@ export default defineNuxtPlugin(() => {
     },
     async error (options: ToasterOptions) {
       // wait for the toast to be mounted
-      const toast = await nt.show(() => h(MyToastError, {
+      const { el, close } = await nt.show(() => h(MyToastError, {
         ...options,
         type: 'error'
       }))
 
       // focus the toast once it's mounted
-      toast.el.focus()
+      el.focus()
+    },
+    close() {
+      // close all toasts
+      nt.closeAll()
+
+      // or close toasts in a specific containerId
+      nt.close('nt-container-bottom-right') 
+
+      // or close toasts using a theme
+      nt.close(theme)
     },
   }
 
