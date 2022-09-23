@@ -21,9 +21,7 @@
     "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
     "eslint": "eslint .",
     "eslint:fix": "eslint --fix .",
-    "release": "run-s release:*",
-    "release:standard-version": "standard-version",
-    "release:publish": "git push --follow-tags origin main && npm publish"
+    "release": "standard-version && git push --follow-tags origin main && npm publish"
   },
   "dependencies": {
     "@nuxt/kit": "^3.0.0-rc.11",

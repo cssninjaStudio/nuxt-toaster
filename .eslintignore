@@ -1,3 +1,5 @@
 dist
 node_modules
 .nuxt
+README.md
+CHANGELOG.md
