@@ -2,12 +2,12 @@ import { type App, h, render } from 'vue'
 import { defu } from 'defu'
 
 import type { NinjaToasterTheme } from '../theme'
-import type { NinjaToasterProps } from '../props'
+import type { NinjaToasterBaseProps, NinjaToasterProps } from '../props'
 import type { NinjaToasterRenderQueue } from './queue'
 import { type NinjaToastEventBus, createEventBus } from './events'
 import NinjaToaster from './components/NinjaToaster'
 
-import { useAppConfig, useNuxtApp, useRuntimeConfig } from '#imports'
+import { useAppConfig, useNuxtApp } from '#imports'
 
 function createElement() {
   if (process.server) {
@@ -43,13 +43,14 @@ export interface NinjaToasterShow {
 }
 
 export function createNinjaToaster(
-  createOptions: Omit<NinjaToasterProps, 'content'> = {}
+  createProps: Omit<NinjaToasterProps, 'content'> = {}
 ) {
   const events = createEventBus()
   const queues: Map<string, NinjaToasterRenderQueue> = new Map()
 
   function show(options: NinjaToasterProps | string | number) {
-    const appConfigProps = (useAppConfig() as any).toaster as NinjaToasterProps
+    const appConfigProps: NinjaToasterBaseProps = (useAppConfig() as any)
+      .toaster
     const app = useNuxtApp().vueApp
     const userProps =
       typeof options === 'string' ||
@@ -57,10 +58,11 @@ export function createNinjaToaster(
       typeof options === 'function'
         ? { content: options }
         : options
+
     const props: NinjaToasterProps = defu(
-      appConfigProps,
-      createOptions,
-      userProps
+      userProps,
+      createProps,
+      appConfigProps
     )
 
     return new Promise<NinjaToasterShow>((resolve) => {

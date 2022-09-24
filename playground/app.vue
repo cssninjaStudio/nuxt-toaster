@@ -22,6 +22,7 @@ function showCustomToast() {
     transition: {
       name: 'fadeOut'
     },
+    maxToasts: 5,
     theme: {
       containerId: 'nt-container-bottom-right',
       containerClass: [
