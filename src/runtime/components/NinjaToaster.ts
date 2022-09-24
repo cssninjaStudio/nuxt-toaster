@@ -143,6 +143,7 @@ export default defineComponent({
       })
     }
 
+    // @todo: check if nested element has focus, then pause the timer
     function onMouseover() {
       isHovered.value = true
       toggleTimer(true)

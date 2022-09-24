@@ -7,11 +7,9 @@ import type { NinjaToasterRenderQueue } from './queue'
 import { type NinjaToastEventBus, createEventBus } from './events'
 import NinjaToaster from './components/NinjaToaster'
 
-// @ts-expect-error - Nuxt 3 auto-imports
-import { useNuxtApp, useRuntimeConfig } from '#app'
+import { useAppConfig, useNuxtApp, useRuntimeConfig } from '#imports'
 
 function createElement() {
-  // @ts-expect-error - Nuxt 3 context
   if (process.server) {
     return null
   }
@@ -51,7 +49,7 @@ export function createNinjaToaster(
   const queues: Map<string, NinjaToasterRenderQueue> = new Map()
 
   function show(options: NinjaToasterProps | string | number) {
-    const config = useRuntimeConfig()
+    const appConfigProps = (useAppConfig() as any).toaster as NinjaToasterProps
     const app = useNuxtApp().vueApp
     const userProps =
       typeof options === 'string' ||
@@ -60,7 +58,7 @@ export function createNinjaToaster(
         ? { content: options }
         : options
     const props: NinjaToasterProps = defu(
-      config.public.nt,
+      appConfigProps,
       createOptions,
       userProps
     )
@@ -79,7 +77,6 @@ export function createNinjaToaster(
         }
       })
 
-      // @ts-expect-error - Nuxt 3 context
       if (process.server) {
         resolve({
           el: null,

@@ -147,20 +147,15 @@ $nt.show({
 > **note:** the `theme` property is used to customize the toaster behavior. Each `theme.containerId` will have their own context (e.g. the `maxToasts` will count how many toaster are visible in the container with matching id).
 
 
-### Using `@cssninja/nuxt-toaster` module options
+### Using `toaster` app config
 
-To avoid to repeat yourself, you can set defaults values for ninjaToaster.show method in the module options.
+To avoid to repeat yourself, you can set defaults values for ninjaToaster.show method in the nuxt `app.config.ts` at the root of your project.
 
 ```ts
-// nuxt.config.ts
-export default defineNuxtConfig({
-  modules: [
-    '@cssninja/nuxt-toaster'
-  ],
+// app.config.ts
+export default defineAppConfig({
   toaster: {
-    base: {
-      // default options for ninjaToaster.show
-    }
+    // default options for ninjaToaster.show
   }
 })
 ```

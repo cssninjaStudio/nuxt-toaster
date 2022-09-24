@@ -1,7 +1,6 @@
 import { createNinjaToaster } from './create'
 
-// @ts-expect-error - Nuxt 3 auto-imports
-import { defineNuxtPlugin } from '#app'
+import { defineNuxtPlugin } from '#imports'
 
 export default defineNuxtPlugin(() => {
   return {

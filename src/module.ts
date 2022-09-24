@@ -4,17 +4,25 @@ import { addImports, addPlugin, defineNuxtModule } from '@nuxt/kit'
 import type { NinjaToasterBaseProps } from './props'
 
 export interface ModuleOptions {
-  base?: NinjaToasterBaseProps
   installPlugin?: boolean
+}
+
+declare module '@nuxt/schema' {
+  interface AppConfigInput {
+    /** nuxt-icon configuration */
+    toaster?: NinjaToasterBaseProps
+  }
 }
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: '@cssninja/nuxt-toaster',
-    configKey: 'toaster'
+    configKey: 'toaster',
+    compatibility: {
+      nuxt: '^3.0.0-rc.9'
+    }
   },
   defaults: {
-    base: {},
     installPlugin: true
   },
   setup(options, nuxt) {
@@ -40,7 +48,5 @@ export default defineNuxtModule<ModuleOptions>({
     if (options.installPlugin) {
       addPlugin(resolve(runtimeDir, 'plugin'))
     }
-
-    nuxt.options.runtimeConfig.public.nt = options.base as any
   }
 })
