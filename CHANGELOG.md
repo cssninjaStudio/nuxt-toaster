@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.1.0](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.0.3...v0.1.0) (2022-09-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* move base options from nuxt config to app config
+
+### Features
+
+* move base options from nuxt config to app config ([4145b25](https://github.com/cssninjaStudio/nuxt-toaster/commit/4145b25ecd0da337777f21e10931385a9fa9ce8d))
+
+
+### Bug Fixes
+
+* define props override issue ([c8097d4](https://github.com/cssninjaStudio/nuxt-toaster/commit/c8097d4cc8f8ab57ffa0af81bfb74f401c47b0b7))
+
 ### [0.0.3](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.0.2...v0.0.3) (2022-09-23)
 
 
