@@ -182,7 +182,7 @@ export default defineAppConfig({
 
 By default, the module create an instance of `ninjaToaster` and inject it in the nuxt context in `useNuxtApp().$nt`.  
 
-You can create your own instance and inject it in the context by using a custom plugin.
+You can create your own instance and inject it in the context by using a custom plugin. Here we are using tailwindcss to style the toast.
 
 1. Disable default plugin in `nuxt.config.ts` module options
 ```ts
@@ -334,6 +334,64 @@ $toaster.error({
   title: 'Hello world',
   message: 'This is a toaster error message'
 })
+```
+
+## Theming
+
+### Minimal CSS theme
+
+```css
+#nt-container {
+  /* make container fit the screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 100;
+  pointer-events: none;
+
+  /* position the toasts using flexbox */
+  display: flex;
+  
+  /**
+   * position all toasts in bottom of the screen 
+   * - use "flex-direction: column;" to position in top screen
+   */
+  flex-direction: column-reverse;
+
+  /**
+   * align all toasts to the center
+   * - use "align-items: start" to aling to the left
+   * - use "align-items: end" to aling to the right
+   */
+  align-items: center;
+
+  /* add some space between toasts and screen */
+  padding: 2rem;
+  gap: 1rem;
+}
+
+#nt-container [role='alert'] {
+  /* allow toasts to be interactive */
+  pointer-events: auto;
+
+  /* add styles to toasts */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 767px) {
+  #nt-container {
+    /* fit toasts to screen on mobile */
+    padding: 0;
+  }
+}
+
 ```
 
 
