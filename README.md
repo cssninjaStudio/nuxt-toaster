@@ -1,15 +1,15 @@
 # @cssninja/nuxt-toaster
 
-A simple toaster handler for Nuxt.js
+🔔 A simple toaster (notifier) handler for Nuxt.js
 
 [![npm](https://img.shields.io/npm/v/@cssninja/nuxt-toaster.svg)](https://www.npmjs.com/package/@cssninja/nuxt-toaster)
 
 ## Features
 
-- Unstyled by default
-- Render any component as a toast
-- Fully customizable
-- Simple to use
+- 🔧 Unstyled by default
+- 🧩 Render any component as a toast
+- 🎨 Fully customizable
+- 🪄 Simple to use
 
 
 ## Installation
