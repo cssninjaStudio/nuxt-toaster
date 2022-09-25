@@ -221,7 +221,10 @@ export default defineComponent({
           {
             role: 'alert',
             tabindex: 0,
-            class: props.theme?.wrapperClass,
+            class:
+              props.theme && Array.isArray(props.theme?.wrapperClass)
+                ? props.theme.wrapperClass.join(' ')
+                : props.theme?.wrapperClass,
             onMouseover,
             onMouseleave,
             onFocus,

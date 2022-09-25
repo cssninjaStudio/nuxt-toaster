@@ -72,8 +72,9 @@ const { $nt } = useNuxtApp()
 
 $nt.show({
   /**
-   * The content of the toast, can be a render function
+   * The content of the toast, can be a render function (a.k.a stateless component)
    * 
+   * @type {string | number | Record<string, any> | (() => Component)}
    * @required
    */
   content: 'Hello world',
@@ -84,7 +85,6 @@ $nt.show({
    * @default 5000
    */
   duration: 5000,
-  
 
   /**
    * Pause the duration timer on hover, or focus
@@ -122,8 +122,26 @@ $nt.show({
    * The theme used for the toast
    */
   theme: {
+    /**
+     * The container id where the toast will be rendered
+     * If not exists, it will be created automatically
+     * 
+     * @default 'nt-container'
+     */
     containerId: 'nt-container',
+    /**
+     * The class name for the toaster container (applyed to toast container)
+     * 
+     * @type {string | string[]}
+     * @default ''
+     */
     containerClass: 'nt-container-class',
+    /**
+     * The class name for the toast wrapper (applyed to each toast)
+     * 
+     * @type {string | string[]}
+     * @default ''
+     */
     wrapperClass: 'nt-wrapper-class',
   }
 })
@@ -245,11 +263,11 @@ export default defineNuxtPlugin(() => {
       'flex-col-reverse',
       'items-start',
       'gap-2'
-    ].join(' '),
+    ],
     wrapperClass: [
       'pointer-events-auto',
       'cursor-pointer',
-    ].join(' '),
+    ],
   }
 
   // set default show options here

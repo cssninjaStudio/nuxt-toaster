@@ -20,7 +20,7 @@ function showCustomToast() {
         message: `Hello ${i} from Nuxt module playground!`
       }),
     transition: {
-      name: 'fadeOut'
+      name: 'toaster'
     },
     maxToasts: 5,
     theme: {
@@ -34,7 +34,7 @@ function showCustomToast() {
         'flex-col-reverse',
         'items-start',
         'gap-2'
-      ].join(' '),
+      ],
       wrapperClass: 'pointer-events-auto cursor-pointer'
     }
   })
@@ -60,7 +60,7 @@ async function showAdvancedToast() {
         'flex-col',
         'items-end',
         'gap-2'
-      ].join(' '),
+      ],
       wrapperClass: [
         'pointer-events-auto',
         'rounded',
@@ -70,7 +70,7 @@ async function showAdvancedToast() {
         'focus:outline-2',
         'focus-within:outline',
         'focus-within:outline-2'
-      ].join(' ')
+      ]
     },
     transition: {
       enterActiveClass: 'transition duration-300 ease-out',
@@ -129,137 +129,25 @@ function clearTopLeftToast() {
 </template>
 
 <style>
-// Animations are taken from animate.css
-// https://daneden.github.io/animate.css
-.fadeOut {
-  animation-name: fadeOut;
+.toaster-enter-active,
+.toaster-leave-active {
+  transform: translateY(0);
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
 }
-.fadeInDown {
-  animation-name: fadeInDown;
-}
-.fadeInUp {
-  animation-name: fadeInUp;
-}
-.fade-enter-active {
-  transition: opacity 300ms ease-in;
-}
-.fade-leave-active {
-  transition: opacity 150ms ease-out;
-}
-.fade-enter,
-.fade-leave-to {
+
+.toaster-enter-from {
+  transform: translateY(100%);
   opacity: 0;
 }
-@-moz-keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+
+.toaster-leave-to {
+  opacity: 0;
 }
-@-webkit-keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-@-o-keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-@-moz-keyframes fadeInDown {
-  from {
-    opacity: 0.5;
-    transform: translate3d(0, -100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@-webkit-keyframes fadeInDown {
-  from {
-    opacity: 0.5;
-    transform: translate3d(0, -100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@-o-keyframes fadeInDown {
-  from {
-    opacity: 0.5;
-    transform: translate3d(0, -100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@keyframes fadeInDown {
-  from {
-    opacity: 0.5;
-    transform: translate3d(0, -100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@-moz-keyframes fadeInUp {
-  from {
-    opacity: 0.5;
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@-webkit-keyframes fadeInUp {
-  from {
-    opacity: 0.5;
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@-o-keyframes fadeInUp {
-  from {
-    opacity: 0.5;
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-@keyframes fadeInUp {
-  from {
-    opacity: 0.5;
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
+
+@media (prefers-reduced-motion: reduce) {
+  .toaster-enter-active,
+  .toaster-leave-active {
+    transition: none;
   }
 }
 </style>

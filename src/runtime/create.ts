@@ -42,6 +42,15 @@ export interface NinjaToasterShow {
   close: () => void
 }
 
+function ensureClassesArray(theme: NinjaToasterTheme) {
+  if (theme?.containerClass && !Array.isArray(theme.containerClass)) {
+    theme.containerClass = [theme.containerClass]
+  }
+  if (theme?.wrapperClass && !Array.isArray(theme.wrapperClass)) {
+    theme.wrapperClass = [theme.wrapperClass]
+  }
+}
+
 export function createNinjaToaster(
   createProps: Omit<NinjaToasterProps, 'content'> = {}
 ) {
@@ -58,6 +67,10 @@ export function createNinjaToaster(
       typeof options === 'function'
         ? { content: options }
         : options
+
+    ensureClassesArray(userProps.theme)
+    ensureClassesArray(createProps.theme)
+    ensureClassesArray(appConfigProps.theme)
 
     const props: NinjaToasterProps = defu(
       userProps,
