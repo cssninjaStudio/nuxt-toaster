@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.1.0...v0.1.1) (2022-09-25)
+
+
+### Features
+
+* allow class array in containerClass and wrapperClass theme ([9296daf](https://github.com/cssninjaStudio/nuxt-toaster/commit/9296daf966f9652e4490d249159217c31c38d1f2))
+
 ## [0.1.0](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.0.3...v0.1.0) (2022-09-24)
 
 
