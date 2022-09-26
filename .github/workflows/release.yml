@@ -1,0 +1,46 @@
+name: release
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release: 
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # needed for git history
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - id: meta
+        name: release meta
+        run: |
+          project=${GITHUB_REPOSITORY#*/}
+          echo ::set-output name=project::${project}
+          echo ::set-output name=project-capitalized::${project^}
+          echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
+
+      - id: changelog
+        name: release changelog
+        run: |
+          pnpm dlx conventional-changelog-cli -p conventionalcommits -r 2 -o ${{ github.workspace }}/CHANGELOG_RELEASE.md
+          cat ${{ github.workspace }}/CHANGELOG_RELEASE.md
+
+      - id: create_release
+        name: create github draft release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: ${{ steps.meta.outputs.project-capitalized }} ${{ steps.meta.outputs.tag }}
+          body_path: ${{ github.workspace }}/CHANGELOG_RELEASE.md
+          draft: false
+          prerelease: false

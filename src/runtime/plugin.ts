@@ -1,5 +1,6 @@
 import { createNinjaToaster } from './create'
-import { defineNuxtPlugin } from '#app'
+
+import { defineNuxtPlugin } from '#imports'
 
 export default defineNuxtPlugin(() => {
   return {

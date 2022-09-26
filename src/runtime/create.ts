@@ -2,11 +2,12 @@ import { type App, h, render } from 'vue'
 import { defu } from 'defu'
 
 import type { NinjaToasterTheme } from '../theme'
-import type { NinjaToasterProps } from '../props'
+import type { NinjaToasterBaseProps, NinjaToasterProps } from '../props'
 import type { NinjaToasterRenderQueue } from './queue'
-import { createEventBus } from './events'
+import { type NinjaToastEventBus, createEventBus } from './events'
 import NinjaToaster from './components/NinjaToaster'
-import { useNuxtApp, useRuntimeConfig } from '#app'
+
+import { useAppConfig, useNuxtApp } from '#imports'
 
 function createElement() {
   if (process.server) {
@@ -16,7 +17,14 @@ function createElement() {
   return document.createElement('div')
 }
 
-function mountWithContext(app: App, component: any, props: NinjaToasterProps) {
+function mountWithContext(
+  app: App,
+  component: any,
+  props: NinjaToasterProps & {
+    events: NinjaToastEventBus
+    queues: Map<string, NinjaToasterRenderQueue>
+  }
+) {
   const el = createElement()
 
   if (el) {
@@ -34,14 +42,24 @@ export interface NinjaToasterShow {
   close: () => void
 }
 
+function ensureClassesArray(theme: NinjaToasterTheme) {
+  if (theme?.containerClass && !Array.isArray(theme.containerClass)) {
+    theme.containerClass = [theme.containerClass]
+  }
+  if (theme?.wrapperClass && !Array.isArray(theme.wrapperClass)) {
+    theme.wrapperClass = [theme.wrapperClass]
+  }
+}
+
 export function createNinjaToaster(
-  createOptions: Omit<NinjaToasterProps, 'content'> = {}
+  createProps: Omit<NinjaToasterProps, 'content'> = {}
 ) {
   const events = createEventBus()
   const queues: Map<string, NinjaToasterRenderQueue> = new Map()
 
   function show(options: NinjaToasterProps | string | number) {
-    const config = useRuntimeConfig()
+    const appConfigProps: NinjaToasterBaseProps = (useAppConfig() as any)
+      .toaster
     const app = useNuxtApp().vueApp
     const userProps =
       typeof options === 'string' ||
@@ -49,15 +67,22 @@ export function createNinjaToaster(
       typeof options === 'function'
         ? { content: options }
         : options
+
+    ensureClassesArray(userProps.theme)
+    ensureClassesArray(createProps.theme)
+    ensureClassesArray(appConfigProps.theme)
+
     const props: NinjaToasterProps = defu(
-      config.public.nt,
-      createOptions,
-      userProps
+      userProps,
+      createProps,
+      appConfigProps
     )
 
     return new Promise<NinjaToasterShow>((resolve) => {
       mountWithContext(app, NinjaToaster, {
         ...props,
+        events,
+        queues,
         onShow: (toast: NinjaToasterShow) => {
           resolve(toast)
 
@@ -77,8 +102,6 @@ export function createNinjaToaster(
   }
 
   function clearAll() {
-    console.log('clear all')
-
     events.emit('clear')
     queues.forEach((queue) => {
       queue.clear()
@@ -89,8 +112,6 @@ export function createNinjaToaster(
   function clear(theme: NinjaToasterTheme | string) {
     const containerId = typeof theme === 'string' ? theme : theme.containerId
 
-    console.log('clear', containerId)
-
     events.emit(`clear-${containerId}`)
     if (queues.has(containerId)) {
       queues.get(containerId)?.clear()
@@ -98,8 +119,6 @@ export function createNinjaToaster(
   }
 
   return {
-    events,
-    queues,
     show,
     clearAll,
     clear

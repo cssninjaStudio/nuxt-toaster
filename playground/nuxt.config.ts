@@ -3,7 +3,6 @@ import NinjaNuxtToaster from '..'
 
 export default defineNuxtConfig({
   modules: [NinjaNuxtToaster],
-  toaster: {},
   app: {
     head: {
       link: [

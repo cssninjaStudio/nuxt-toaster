@@ -11,12 +11,12 @@ import {
   withDirectives
 } from 'vue'
 
+import type { NinjaToastEventBus } from '../events'
 import type { NinjaToasterProps } from '../../props'
 import { usePausableTimeout } from '../composables/usePausableTimeout'
 import { useNinjaToasterContainer } from '../composables/useNinjaToasterContainer'
 import { createNinjaToasterState } from '../composables/useNinjaToasterState'
 import { type NinjaToasterRenderQueue, createRenderQueue } from '../queue'
-import { useNuxtApp } from '#app'
 
 export default defineComponent({
   name: 'NinjaToaster',
@@ -28,7 +28,7 @@ export default defineComponent({
       required: true
     },
     duration: {
-      type: Number as PropType<NinjaToasterProps['duration']>,
+      type: Number,
       default: 5000
     },
     transition: {
@@ -40,16 +40,24 @@ export default defineComponent({
       default: () => ({} as NinjaToasterProps['theme'])
     },
     dismissible: {
-      type: Boolean as PropType<NinjaToasterProps['dismissible']>,
+      type: Boolean,
       default: true
     },
     pauseOnHover: {
-      type: Boolean as PropType<NinjaToasterProps['pauseOnHover']>,
+      type: Boolean,
       default: true
     },
     maxToasts: {
-      type: Number as PropType<NinjaToasterProps['maxToasts']>,
+      type: Number,
       default: Infinity
+    },
+    queues: {
+      type: Map as PropType<Map<string, NinjaToasterRenderQueue>>,
+      default: () => new Map()
+    },
+    events: {
+      type: Object as PropType<NinjaToastEventBus>,
+      default: () => ({})
     }
   },
   emits: ['close', 'click', 'show'],
@@ -63,15 +71,13 @@ export default defineComponent({
     const isActive = ref(false)
     const unqueue = ref<() => void>()
     const rootElement = ref<HTMLElement>()
-    const nuxt = useNuxtApp()
-    const events = nuxt.$nt.events
     let queue: NinjaToasterRenderQueue
 
-    if (nuxt.$nt.queues.has(containerId)) {
-      queue = nuxt.$nt.queues.get(containerId)
+    if (props.queues.has(containerId)) {
+      queue = props.queues.get(containerId)!
     } else {
       queue = createRenderQueue()
-      nuxt.$nt.queues.set(containerId, queue)
+      props.queues.set(containerId, queue)
     }
 
     const content = computed(() => {
@@ -81,6 +87,10 @@ export default defineComponent({
     })
 
     const shouldQueue = () => {
+      if (!container.value) {
+        return false
+      }
+
       if (props.maxToasts <= 0 || props.maxToasts === Infinity) {
         return false
       }
@@ -116,6 +126,10 @@ export default defineComponent({
         return
       }
 
+      if (!container.value || !rootElement.value) {
+        return
+      }
+
       container.value.insertAdjacentElement('afterbegin', rootElement.value)
       isActive.value = true
 
@@ -129,6 +143,7 @@ export default defineComponent({
       })
     }
 
+    // @todo: check if nested element has focus, then pause the timer
     function onMouseover() {
       isHovered.value = true
       toggleTimer(true)
@@ -175,19 +190,19 @@ export default defineComponent({
       if (typeof rootElement.value?.remove !== 'undefined') {
         rootElement.value?.remove()
       } else {
-        rootElement.value?.parentNode.removeChild(rootElement.value)
+        rootElement.value?.parentNode?.removeChild(rootElement.value)
       }
     }
 
     onMounted(() => {
       show()
 
-      events.on('clear', close)
-      events.on(`clear-${containerId}`, close)
+      props.events.on('clear', close)
+      props.events.on(`clear-${containerId}`, close)
     })
     onBeforeUnmount(() => {
-      events.off('clear', close)
-      events.off(`clear-${containerId}`, close)
+      props.events.off('clear', close)
+      props.events.off(`clear-${containerId}`, close)
     })
 
     createNinjaToasterState({
@@ -206,7 +221,10 @@ export default defineComponent({
           {
             role: 'alert',
             tabindex: 0,
-            class: props.theme.wrapperClass,
+            class:
+              props.theme && Array.isArray(props.theme?.wrapperClass)
+                ? props.theme.wrapperClass.join(' ')
+                : props.theme?.wrapperClass,
             onMouseover,
             onMouseleave,
             onFocus,

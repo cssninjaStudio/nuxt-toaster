@@ -6,7 +6,7 @@ export interface NinjaToasterQueue {
 export function createRenderQueue() {
   // last in last out queue
   const queue: NinjaToasterQueue[] = []
-  let timer: ReturnType<typeof setTimeout> | null = null
+  let timer: ReturnType<typeof setTimeout> | undefined
 
   function add(item: NinjaToasterQueue) {
     queue.push(item)
@@ -32,7 +32,7 @@ export function createRenderQueue() {
     queue.length = 0
     if (timer) {
       clearTimeout(timer)
-      timer = null
+      timer = undefined
     }
   }
 

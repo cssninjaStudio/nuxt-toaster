@@ -1,12 +1,12 @@
 import { ref } from 'vue'
 import { tryOnBeforeUnmount } from '@vueuse/core'
 
-export function usePausableTimeout(callback: Function, timeout: number) {
+export function usePausableTimeout(callback: Function, timeout?: number) {
   const pausedAt = ref(0)
   const startedAt = ref(0)
   const remaining = ref(0)
 
-  let timer
+  let timer: number | undefined
 
   function stop() {
     if (!timer) {
@@ -20,7 +20,7 @@ export function usePausableTimeout(callback: Function, timeout: number) {
   function start() {
     pausedAt.value = 0
     startedAt.value = Date.now()
-    remaining.value = timeout
+    remaining.value = timeout ?? 0
 
     stop()
     timer = setTimeout(callback, remaining.value)

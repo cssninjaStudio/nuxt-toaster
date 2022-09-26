@@ -1,15 +1,15 @@
 # @cssninja/nuxt-toaster
 
-A simple toaster handler for Nuxt.js
+🔔 A simple toaster (notifier) handler for Nuxt.js
 
 [![npm](https://img.shields.io/npm/v/@cssninja/nuxt-toaster.svg)](https://www.npmjs.com/package/@cssninja/nuxt-toaster)
 
 ## Features
 
-- Unstyled by default
-- Render any component as a toast
-- Fully customizable
-- Simple to use
+- 🔧 Unstyled by default
+- 🧩 Render any component as a toast
+- 🎨 Fully customizable
+- 🪄 Simple to use
 
 
 ## Installation
@@ -72,8 +72,9 @@ const { $nt } = useNuxtApp()
 
 $nt.show({
   /**
-   * The content of the toast, can be a render function
+   * The content of the toast, can be a render function (a.k.a stateless component)
    * 
+   * @type {string | number | Record<string, any> | (() => Component)}
    * @required
    */
   content: 'Hello world',
@@ -84,7 +85,6 @@ $nt.show({
    * @default 5000
    */
   duration: 5000,
-  
 
   /**
    * Pause the duration timer on hover, or focus
@@ -122,8 +122,26 @@ $nt.show({
    * The theme used for the toast
    */
   theme: {
+    /**
+     * The container id where the toast will be rendered
+     * If not exists, it will be created automatically
+     * 
+     * @default 'nt-container'
+     */
     containerId: 'nt-container',
+    /**
+     * The class name for the toaster container (applyed to toast container)
+     * 
+     * @type {string | string[]}
+     * @default ''
+     */
     containerClass: 'nt-container-class',
+    /**
+     * The class name for the toast wrapper (applyed to each toast)
+     * 
+     * @type {string | string[]}
+     * @default ''
+     */
     wrapperClass: 'nt-wrapper-class',
   }
 })
@@ -147,20 +165,15 @@ $nt.show({
 > **note:** the `theme` property is used to customize the toaster behavior. Each `theme.containerId` will have their own context (e.g. the `maxToasts` will count how many toaster are visible in the container with matching id).
 
 
-### Using `@cssninja/nuxt-toaster` module options
+### Using `toaster` app config
 
-To avoid to repeat yourself, you can set defaults values for ninjaToaster.show method in the module options.
+To avoid to repeat yourself, you can set defaults values for ninjaToaster.show method in the nuxt `app.config.ts` at the root of your project.
 
 ```ts
-// nuxt.config.ts
-export default defineNuxtConfig({
-  modules: [
-    '@cssninja/nuxt-toaster'
-  ],
+// app.config.ts
+export default defineAppConfig({
   toaster: {
-    base: {
-      // default options for ninjaToaster.show
-    }
+    // default options for ninjaToaster.show
   }
 })
 ```
@@ -169,7 +182,7 @@ export default defineNuxtConfig({
 
 By default, the module create an instance of `ninjaToaster` and inject it in the nuxt context in `useNuxtApp().$nt`.  
 
-You can create your own instance and inject it in the context by using a custom plugin.
+You can create your own instance and inject it in the context by using a custom plugin. Here we are using tailwindcss to style the toast.
 
 1. Disable default plugin in `nuxt.config.ts` module options
 ```ts
@@ -186,7 +199,7 @@ export default defineNuxtConfig({
 ```
 
 2. Create a custom toast component
-```html
+```vue
 <script setup lang="ts">
 // components/MyToast.vue
 const props = defineProps<{
@@ -250,11 +263,11 @@ export default defineNuxtPlugin(() => {
       'flex-col-reverse',
       'items-start',
       'gap-2'
-    ].join(' '),
+    ],
     wrapperClass: [
       'pointer-events-auto',
       'cursor-pointer',
-    ].join(' '),
+    ],
   }
 
   // set default show options here
@@ -321,6 +334,64 @@ $toaster.error({
   title: 'Hello world',
   message: 'This is a toaster error message'
 })
+```
+
+## Theming
+
+### Minimal CSS theme
+
+```css
+#nt-container {
+  /* make container fit the screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 100;
+  pointer-events: none;
+
+  /* position the toasts using flexbox */
+  display: flex;
+  
+  /**
+   * position all toasts in bottom of the screen 
+   * - use "flex-direction: column;" to position in top screen
+   */
+  flex-direction: column-reverse;
+
+  /**
+   * align all toasts to the center
+   * - use "align-items: start" to aling to the left
+   * - use "align-items: end" to aling to the right
+   */
+  align-items: center;
+
+  /* add some space between toasts and screen */
+  padding: 2rem;
+  gap: 1rem;
+}
+
+#nt-container [role='alert'] {
+  /* allow toasts to be interactive */
+  pointer-events: auto;
+
+  /* add styles to toasts */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+
+@media (max-width: 767px) {
+  #nt-container {
+    /* fit toasts to screen on mobile */
+    padding: 0;
+  }
+}
+
 ```
 
 

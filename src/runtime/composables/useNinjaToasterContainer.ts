@@ -18,7 +18,9 @@ export function useNinjaToasterContainer(theme?: NinjaToasterTheme) {
     }
 
     if (theme?.containerClass) {
-      container.value.className = theme.containerClass
+      container.value.className = Array.isArray(theme.containerClass)
+        ? theme.containerClass.join(' ')
+        : theme.containerClass
     }
   })
 
