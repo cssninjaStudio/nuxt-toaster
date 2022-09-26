@@ -20,6 +20,7 @@
       "error",
       { "whitelist": ["^ninja-(.*)$"] }
     ],
+    "tailwindcss/classnames-order": "off",
     "prettier-vue/prettier": [
       "error",
       {
