@@ -1,5 +1,9 @@
+<script setup lang="ts">
+const { isDark } = useDarkmode()
+</script>
+
 <template>
-  <div>
+  <div :class="isDark ? 'dark' : ''">
     <Navigation />
     <NuxtPage />
   </div>

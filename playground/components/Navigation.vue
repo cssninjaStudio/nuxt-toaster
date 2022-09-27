@@ -13,14 +13,14 @@ const isChecked = ref(false)
 
 <template>
   <div
-    class="fixed top-0 left-0 w-full transition-all duration-300"
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
     :class="[isScrolled && 'bg-white dark:bg-slate-800']"
   >
     <div class="mx-auto w-full max-w-7xl p-4">
       <div class="flex items-center justify-between gap-x-2">
         <div class="flex items-center gap-x-2">
-          <img class="w-8 h-8" src="/assets/img/logo.svg" alt="Logo" />
-          <h2 class="font-medium text-xl text-stone-800">Nuxt Toaster</h2>
+          <img class="w-9 h-9" src="/assets/img/logo.svg" alt="Logo" />
+          <img class="h-5" src="/assets/img/logo-text.svg" alt="Logo text" />
         </div>
         <div class="flex items-center justify-end divide-x divide-stone-300">
           <div class="flex items-center justify-end gap-x-5 pr-4">
