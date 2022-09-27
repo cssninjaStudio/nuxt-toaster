@@ -22,16 +22,18 @@ const isChecked = ref(false)
     <div class="mx-auto w-full max-w-7xl p-4">
       <div class="w-full flex items-center justify-between gap-x-2">
         <div class="w-full lg:w-auto flex items-center gap-x-2">
-          <img class="w-9 h-9" src="/assets/img/logo.svg" alt="Logo" />
-          <img
-            class="h-5 dark:invert"
-            src="/assets/img/logo-text.svg"
-            alt="Logo text"
-          />
+          <NuxtLink to="/" class="flex items-center gap-2 tw-accessibility">
+            <img class="w-9 h-9" src="/assets/img/logo.svg" alt="Logo" />
+            <img
+              class="h-5 dark:invert"
+              src="/assets/img/logo-text.svg"
+              alt="Logo text"
+            />
+          </NuxtLink>
 
           <!-- Hamburger -->
           <button
-            class="flex relative justify-center items-center ml-auto w-10 h-10 focus:outline-none lg:hidden"
+            class="flex relative justify-center items-center ml-auto w-10 h-10 lg:hidden tw-accessibility"
             @click="mobileOpen = !mobileOpen"
           >
             <div
@@ -61,19 +63,19 @@ const isChecked = ref(false)
           >
             <NuxtLink
               to="/"
-              class="text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300"
+              class="text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300 tw-accessibility"
               >Examples</NuxtLink
             >
             <NuxtLink
               to="/api"
-              class="text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300"
+              class="text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300 tw-accessibility"
               >API docs</NuxtLink
             >
           </div>
           <div class="flex items-center justify-end gap-x-1 lg:pl-4">
             <NuxtLink
               to="/"
-              class="w-10 h-10 flex items-center justify-center rounded-full text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300"
+              class="w-10 h-10 flex items-center justify-center rounded-full text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300 tw-accessibility"
             >
               <svg class="w-5 h-5" viewBox="0 0 1536 1504">
                 <path
@@ -84,7 +86,7 @@ const isChecked = ref(false)
             </NuxtLink>
             <NuxtLink
               to="/"
-              class="w-10 h-10 flex items-center justify-center rounded-full text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300"
+              class="w-10 h-10 flex items-center justify-center rounded-full text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300 tw-accessibility"
             >
               <svg class="w-5 h-5" viewBox="0 0 1600 1280">
                 <path
@@ -94,7 +96,9 @@ const isChecked = ref(false)
               </svg>
             </NuxtLink>
             <!-- Theme -->
-            <label class="block w-9 h-9 overflow-hidden relative mx-auto">
+            <label
+              class="block w-9 h-9 rounded-full overflow-hidden relative mx-auto focus-within:tw-accessibility-static"
+            >
               <input
                 v-model="isChecked"
                 type="checkbox"

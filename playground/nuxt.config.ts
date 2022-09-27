@@ -3,6 +3,7 @@ import NinjaNuxtToaster from '..'
 
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', NinjaNuxtToaster],
+  css: ['@/assets/css/main.css'],
   app: {
     head: {
       link: [

@@ -26,7 +26,7 @@
     </div>
     <button
       type="button"
-      class="h-11 w-11 flex items-center justify-center ml-auto text-muted-700 dark:text-muted-400"
+      class="h-9 w-9 flex items-center justify-center rounded-full ml-auto text-muted-700 dark:text-muted-400 hover:bg-muted-100 dark:hover:bg-muted-700 transition-colors duration-300 tw-accessibility"
     >
       <svg class="w-4 h-4" viewBox="0 0 24 24">
         <path

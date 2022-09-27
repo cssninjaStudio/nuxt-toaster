@@ -1,0 +1,9 @@
+@layer utilities {
+  .tw-accessibility {
+    @apply outline-none focus-visible:outline-none focus-visible:outline-dashed focus-visible:outline-muted-300 dark:focus-visible:outline-muted-600 focus-visible:outline-offset-2;
+  }
+
+  .tw-accessibility-static {
+    @apply outline-dashed outline-muted-300 dark:outline-muted-600 outline-offset-2;
+  }
+}

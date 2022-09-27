@@ -65,7 +65,7 @@
           >
             <input
               type="text"
-              class="w-full h-14 pl-14 pr-4 py-2 rounded-xl font-mono text-muted-600 dark:text-muted-400 bg-white dark:bg-muted-1000 border border-muted-200 dark:border-muted-800 group-hover:shadow-xl group-hover:shadow-muted-400/10 dark:group-hover:shadow-muted-800/10 transition-all duration-300"
+              class="w-full h-14 pl-14 pr-4 py-2 rounded-xl font-mono text-muted-600 dark:text-muted-400 bg-white dark:bg-muted-1000 border border-muted-200 dark:border-muted-800 group-hover:shadow-xl group-hover:shadow-muted-400/10 dark:group-hover:shadow-muted-800/10 transition-all duration-300 tw-accessibility"
               value="npm i -D @cssninja/nuxt-toaster"
             />
             <!-- Terminal icon -->
@@ -82,9 +82,9 @@
             <!-- Copy button -->
             <button
               type="button"
-              class="w-full lg:w-auto lg:absolute top-2 right-2 h-12 lg:h-10 py-2 px-5 rounded-lg text-sm text-white bg-indigo-500 hover:shadow-xl hover:shadow-indigo-500/20 dark:hover:shadow-indigo-800/10 transition-all duration-300"
+              class="w-full lg:w-auto lg:absolute top-2 right-2 h-12 lg:h-10 py-2 px-5 rounded-lg text-sm text-white bg-indigo-500 hover:shadow-xl hover:shadow-indigo-500/20 dark:hover:shadow-indigo-800/10 transition-all duration-300 tw-accessibility"
             >
-              Copy
+              Try Me
             </button>
           </div>
         </div>
