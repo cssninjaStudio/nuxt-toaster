@@ -13,13 +13,11 @@
   "rules": {
     "no-console": "off",
     "no-debugger": "off",
+    "prefer-arrow-callback": "off",
     "vue/script-setup-uses-vars": "error",
     "vue/multi-word-component-names": "off",
     "vue/define-macros-order": "off",
-    "tailwindcss/no-custom-classname": [
-      "error",
-      { "whitelist": ["^ninja-(.*)$"] }
-    ],
+    "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "off",
     "prettier-vue/prettier": [
       "error",
@@ -27,7 +25,7 @@
         "printWidth": 80,
         "singleQuote": true,
         "semi": false,
-        "trailingComma": "none"
+        // "trailingComma": "none"
       }
     ]
   }

@@ -3,7 +3,7 @@
     class="w-full flex items-center rounded-xl bg-white dark:bg-stone-800 shadow-xl shadow-stone-300/10 dark:shadow-stone-800/10 overflow-hidden"
   >
     <div
-      class="h-16 w-16 flex items-center justify-center text-emerald-500 bg-emerald-100"
+      class="h-16 w-16 flex items-center justify-center text-emerald-500 bg-emerald-100 dark:bg-emerald-500"
     >
       <svg class="w-6 h-6" viewBox="0 0 256 172">
         <path
@@ -17,7 +17,9 @@
       </svg>
     </div>
     <div class="pr-6 pl-4">
-      <span class="text-sm text-stone-600">Nuxt has been installed!</span>
+      <span class="text-sm text-stone-600 dark:text-muted-400"
+        >Nuxt has been installed!</span
+      >
     </div>
   </div>
 </template>

@@ -1,9 +1,9 @@
 <template>
   <div
-    class="w-full flex items-center rounded-xl bg-white dark:bg-stone-800 shadow-xl shadow-stone-300/10 dark:shadow-stone-800/10 overflow-hidden"
+    class="w-full flex items-center rounded-xl bg-white dark:bg-muted-800 shadow-xl shadow-muted-300/10 dark:shadow-muted-800/10 overflow-hidden"
   >
     <div
-      class="h-16 w-16 flex items-center justify-center text-sky-500 bg-sky-100"
+      class="h-16 w-16 flex items-center justify-center text-sky-500 bg-sky-100 dark:text-white dark:bg-sky-500"
     >
       <svg class="w-5 h-5" viewBox="0 0 512 512">
         <path
@@ -13,7 +13,9 @@
       </svg>
     </div>
     <div class="pr-6 pl-4">
-      <span class="text-sm text-stone-600">Your changes were saved!</span>
+      <span class="text-sm text-muted-600 dark:text-muted-400"
+        >Your changes were saved!</span
+      >
     </div>
   </div>
 </template>

@@ -14,23 +14,66 @@ const isChecked = ref(false)
 <template>
   <div
     class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
-    :class="[isScrolled && 'bg-white dark:bg-slate-800']"
+    :class="[
+      isScrolled && 'bg-white dark:bg-muted-1000',
+      mobileOpen ? 'bg-white dark:bg-muted-1000' : '',
+    ]"
   >
     <div class="mx-auto w-full max-w-7xl p-4">
-      <div class="flex items-center justify-between gap-x-2">
-        <div class="flex items-center gap-x-2">
+      <div class="w-full flex items-center justify-between gap-x-2">
+        <div class="w-full lg:w-auto flex items-center gap-x-2">
           <img class="w-9 h-9" src="/assets/img/logo.svg" alt="Logo" />
-          <img class="h-5" src="/assets/img/logo-text.svg" alt="Logo text" />
+          <img
+            class="h-5 dark:invert"
+            src="/assets/img/logo-text.svg"
+            alt="Logo text"
+          />
+
+          <!-- Hamburger -->
+          <button
+            class="flex relative justify-center items-center ml-auto w-10 h-10 focus:outline-none lg:hidden"
+            @click="mobileOpen = !mobileOpen"
+          >
+            <div
+              class="block top-1/2 left-6 w-4 -translate-x-1/2 -translate-y-1/2"
+            >
+              <span
+                class="block absolute w-7 h-0.5 text-indigo-500 bg-current transition duration-500 ease-in-out"
+                :class="mobileOpen ? 'rotate-45' : '-translate-y-2'"
+              />
+              <span
+                class="block absolute w-5 h-0.5 text-indigo-500 bg-current transition duration-500 ease-in-out"
+                :class="mobileOpen ? 'opacity-0' : ''"
+              />
+              <span
+                class="block absolute w-7 h-0.5 text-indigo-500 bg-current transition duration-500 ease-in-out"
+                :class="mobileOpen ? '-rotate-45' : 'translate-y-2'"
+              />
+            </div>
+          </button>
         </div>
-        <div class="flex items-center justify-end divide-x divide-stone-300">
-          <div class="flex items-center justify-end gap-x-5 pr-4">
-            <NuxtLink to="/">Examples</NuxtLink>
-            <NuxtLink to="/api">API docs</NuxtLink>
-          </div>
-          <div class="flex items-center justify-end gap-x-1 pl-4">
+        <div
+          class="lg:flex flex-col lg:flex-row items-center justify-end p-6 lg:p-0 space-y-3 lg:space-y-0 lg:divide-x divide-muted-300 dark:divide-muted-700 bg-white dark:bg-muted-900 lg:bg-transparent dark:lg:bg-transparent"
+          :class="mobileOpen ? 'fixed top-[72px] left-0 w-full flex' : 'hidden'"
+        >
+          <div
+            class="flex flex-col lg:flex-row items-center justify-end gap-x-5 lg:pr-4 space-y-3 lg:space-y-0"
+          >
             <NuxtLink
               to="/"
-              class="w-10 h-10 flex items-center justify-center rounded-full"
+              class="text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300"
+              >Examples</NuxtLink
+            >
+            <NuxtLink
+              to="/api"
+              class="text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300"
+              >API docs</NuxtLink
+            >
+          </div>
+          <div class="flex items-center justify-end gap-x-1 lg:pl-4">
+            <NuxtLink
+              to="/"
+              class="w-10 h-10 flex items-center justify-center rounded-full text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300"
             >
               <svg class="w-5 h-5" viewBox="0 0 1536 1504">
                 <path
@@ -41,7 +84,7 @@ const isChecked = ref(false)
             </NuxtLink>
             <NuxtLink
               to="/"
-              class="w-10 h-10 flex items-center justify-center rounded-full"
+              class="w-10 h-10 flex items-center justify-center rounded-full text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300"
             >
               <svg class="w-5 h-5" viewBox="0 0 1600 1280">
                 <path
@@ -51,9 +94,7 @@ const isChecked = ref(false)
               </svg>
             </NuxtLink>
             <!-- Theme -->
-            <label
-              class="block w-9 h-9 overflow-hidden relative mx-auto mb-4 lg:m-0"
-            >
+            <label class="block w-9 h-9 overflow-hidden relative mx-auto">
               <input
                 v-model="isChecked"
                 type="checkbox"
@@ -61,7 +102,7 @@ const isChecked = ref(false)
                 @change="() => toggleDark()"
               />
               <span
-                class="block relative w-9 h-9 bg-white dark:bg-slate-800 rounded-full border border-slate-300 dark:border-slate-700"
+                class="block relative w-9 h-9 bg-white dark:bg-muted-800 rounded-full border border-muted-300 dark:border-muted-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +113,7 @@ const isChecked = ref(false)
                   :class="[
                     !isChecked
                       ? 'opacity-100 -translate-x-[45%] -translate-y-1/2'
-                      : 'opacity-0  -translate-x-[45%] -translate-y-[150%]'
+                      : 'opacity-0  -translate-x-[45%] -translate-y-[150%]',
                   ]"
                   width="32"
                   height="32"
@@ -106,7 +147,7 @@ const isChecked = ref(false)
                   :class="[
                     !isChecked
                       ? 'opacity-0 -translate-x-[45%] -translate-y-[150%]'
-                      : 'opacity-100 -translate-x-[45%] -translate-y-1/2'
+                      : 'opacity-100 -translate-x-[45%] -translate-y-1/2',
                   ]"
                   width="32"
                   height="32"

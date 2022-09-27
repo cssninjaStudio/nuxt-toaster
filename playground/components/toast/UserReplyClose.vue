@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-stone-800 shadow-xl shadow-stone-300/10 dark:shadow-stone-800/10 overflow-hidden"
+    class="w-full flex items-center gap-3 p-3 rounded-xl bg-white dark:bg-muted-800 shadow-xl shadow-muted-300/10 dark:shadow-muted-800/10 overflow-hidden"
   >
     <div
       class="inline-flex justify-center items-center relative w-10 h-10 rounded-full"
@@ -12,12 +12,15 @@
       />
     </div>
     <div class="mr-6">
-      <span class="block font-semibold text-sm text-stone-800">Clark E.</span>
-      <span class="block text-xs text-stone-400">Replied to your post</span>
+      <span
+        class="block font-semibold text-sm text-muted-800 dark:text-muted-100"
+        >Clark E.</span
+      >
+      <span class="block text-xs text-muted-400">Replied to your post</span>
     </div>
     <button
       type="button"
-      class="h-11 w-11 flex items-center justify-center ml-auto"
+      class="h-11 w-11 flex items-center justify-center ml-auto text-muted-400"
     >
       <svg class="w-4 h-4" viewBox="0 0 24 24">
         <path
