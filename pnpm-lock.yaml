@@ -6,6 +6,7 @@ specifiers:
   '@nuxt/module-builder': latest
   '@nuxt/schema': ^3.0.0-rc.11
   '@nuxtjs/tailwindcss': ^5.3.3
+  '@types/prismjs': ^1.26.0
   '@vueuse/core': ^9.2.0
   defu: ^6.1.0
   eslint: 8.24.0
@@ -14,7 +15,10 @@ specifiers:
   eslint-plugin-tailwindcss: 3.6.1
   eslint-plugin-vuejs-accessibility: 1.2.0
   nuxt: ^3.0.0-rc.11
+  prism-theme-vars: 0.2.3
+  prismjs: 1.28.0
   standard-version: ^9.5.0
+  vue-prism-component: 2.0.0
 
 dependencies:
   '@nuxt/kit': 3.0.0-rc.11
@@ -26,13 +30,17 @@ devDependencies:
   '@nuxt/module-builder': 0.1.7
   '@nuxt/schema': 3.0.0-rc.11
   '@nuxtjs/tailwindcss': 5.3.3
+  '@types/prismjs': 1.26.0
   eslint: 8.24.0
   eslint-config-prettier: 8.5.0_eslint@8.24.0
   eslint-plugin-prettier-vue: 4.2.0
   eslint-plugin-tailwindcss: 3.6.1
   eslint-plugin-vuejs-accessibility: 1.2.0_eslint@8.24.0
   nuxt: 3.0.0-rc.11_eslint@8.24.0
+  prism-theme-vars: 0.2.3
+  prismjs: 1.28.0
   standard-version: 9.5.0
+  vue-prism-component: 2.0.0
 
 packages:
 
@@ -1023,6 +1031,10 @@ packages:
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
+    dev: true
+
+  /@types/prismjs/1.26.0:
+    resolution: {integrity: sha512-ZTaqn/qSqUuAq1YwvOFQfVW1AR/oQJlLSZVustdjwI+GZ8kr0MSHBj0tsXPW1EqHubx50gtBEjbPGsdZwQwCjQ==}
     dev: true
 
   /@types/resolve/1.17.1:
@@ -6347,6 +6359,15 @@ packages:
     engines: {node: ^14.13.1 || >=16.0.0}
     dev: true
 
+  /prism-theme-vars/0.2.3:
+    resolution: {integrity: sha512-lpRg8GWfxu38m4rZwjrvOxeHlmL4tERhe9sTjrC47HMu6uCEch3bLUQVNlISoEq9Z24g5Xm+B7AKdyiKSevktg==}
+    dev: true
+
+  /prismjs/1.28.0:
+    resolution: {integrity: sha512-8aaXdYvl1F7iC7Xm1spqSaY/OJBpYW3v+KJ+F17iYxvdc8sfjW194COK5wVhMZX45tGteiBQgdvD/nhxcRwylw==}
+    engines: {node: '>=6'}
+    dev: true
+
   /process-nextick-args/2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
@@ -7808,6 +7829,10 @@ packages:
       semver: 7.3.7
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /vue-prism-component/2.0.0:
+    resolution: {integrity: sha512-1ofrL+GCZOv4HqtX5W3EgkhSAgadSeuD8FDTXbwhLy8kS+28RCR8t2S5VTeM9U/peAaXLBpSgRt3J25ao8KTeg==}
     dev: true
 
   /vue-router/4.1.5_vue@3.2.39:

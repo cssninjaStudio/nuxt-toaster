@@ -17,10 +17,10 @@ function showCustomToast() {
   $nt.show({
     content: () =>
       h(CustomToast, {
-        message: `Hello ${i} from Nuxt module playground!`
+        message: `Hello ${i} from Nuxt module playground!`,
       }),
     transition: {
-      name: 'fadeOut'
+      name: 'fadeOut',
     },
     maxToasts: 5,
     theme: {
@@ -33,10 +33,10 @@ function showCustomToast() {
         'flex',
         'flex-col-reverse',
         'items-start',
-        'gap-2'
+        'gap-2',
       ].join(' '),
-      wrapperClass: 'pointer-events-auto cursor-pointer'
-    }
+      wrapperClass: 'pointer-events-auto cursor-pointer',
+    },
   })
 }
 
@@ -45,7 +45,7 @@ async function showAdvancedToast() {
   const toast = await $nt.show({
     content: () =>
       h(AdvancedToast, {
-        message: `Hello ${i} from Nuxt module playground!`
+        message: `Hello ${i} from Nuxt module playground!`,
       }),
     dismissible: false,
     maxToasts: 1,
@@ -59,7 +59,7 @@ async function showAdvancedToast() {
         'flex',
         'flex-col',
         'items-end',
-        'gap-2'
+        'gap-2',
       ].join(' '),
       wrapperClass: [
         'pointer-events-auto',
@@ -69,8 +69,8 @@ async function showAdvancedToast() {
         'focus:outline',
         'focus:outline-2',
         'focus-within:outline',
-        'focus-within:outline-2'
-      ].join(' ')
+        'focus-within:outline-2',
+      ].join(' '),
     },
     transition: {
       enterActiveClass: 'transition duration-300 ease-out',
@@ -78,8 +78,8 @@ async function showAdvancedToast() {
       enterToClass: 'transform translate-x-0 opacity-100',
       leaveActiveClass: 'transition duration-300 ease-in',
       leaveFromClass: 'transform translate-x-0 opacity-100',
-      leaveToClass: 'transform translate-x-full opacity-0'
-    }
+      leaveToClass: 'transform translate-x-full opacity-0',
+    },
   })
 
   toast.el.focus()
@@ -90,44 +90,72 @@ function clearAllToast() {
 function clearTopLeftToast() {
   $nt.clear('nt-container-top-left')
 }
+
+const demoCode = `
+# Using pnpm
+pnpm add -D @cssninja/nuxt-toaster
+
+# Using yarn
+pnpm add -D @cssninja/nuxt-toaster
+
+# Using npm
+npm install --save-dev @cssninja/nuxt-toaster
+`
+
+const demoCode2 = `
+export default defineNuxtConfig({
+  modules: [
+    '@cssninja/nuxt-toaster'
+  ]
+})
+`
 </script>
 
 <template>
   <div>
     <Hero />
-    <div class="mx-auto w-full max-w-7xl">
-      <p>Nuxt module playground!</p>
-      <button
-        class="m-1 rounded border border-slate-200 px-2 py-1"
-        @click="showBasicToast"
-      >
-        show basic toast
-      </button>
-      <button
-        class="m-1 rounded border border-slate-200 px-2 py-1"
-        @click="showCustomToast"
-      >
-        show custom toast
-      </button>
-      <button
-        class="m-1 rounded border border-slate-200 px-2 py-1"
-        @click="showAdvancedToast"
-      >
-        show advanced toast
-      </button>
-      <button
-        class="m-1 rounded border border-slate-200 px-2 py-1"
-        @click="clearTopLeftToast"
-      >
-        clear advanced toasts
-      </button>
-      <button
-        class="m-1 rounded border border-slate-200 px-2 py-1"
-        @click="clearAllToast"
-      >
-        clear all toast
-      </button>
-    </div>
+
+    <ContentGetStarted />
+
+    <ContentSetup />
+
+    <ContentBasicUsage />
+
+    <Section>
+      <div class="mx-auto w-full max-w-7xl">
+        <p>Nuxt module playground!</p>
+        <button
+          class="m-1 rounded border border-slate-200 px-2 py-1"
+          @click="showBasicToast"
+        >
+          show basic toast
+        </button>
+        <button
+          class="m-1 rounded border border-slate-200 px-2 py-1"
+          @click="showCustomToast"
+        >
+          show custom toast
+        </button>
+        <button
+          class="m-1 rounded border border-slate-200 px-2 py-1"
+          @click="showAdvancedToast"
+        >
+          show advanced toast
+        </button>
+        <button
+          class="m-1 rounded border border-slate-200 px-2 py-1"
+          @click="clearTopLeftToast"
+        >
+          clear advanced toasts
+        </button>
+        <button
+          class="m-1 rounded border border-slate-200 px-2 py-1"
+          @click="clearAllToast"
+        >
+          clear all toast
+        </button>
+      </div>
+    </Section>
   </div>
 </template>
 
