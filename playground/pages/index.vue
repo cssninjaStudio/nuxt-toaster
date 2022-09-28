@@ -121,6 +121,10 @@ export default defineNuxtConfig({
 
     <ContentBasicUsage />
 
+    <ContentAnatomy />
+
+    <ContentExamplePlain />
+
     <Section>
       <div class="mx-auto w-full max-w-7xl">
         <p>Nuxt module playground!</p>

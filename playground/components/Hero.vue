@@ -42,8 +42,9 @@
       <div class="w-full flex items-center justify-center grow">
         <div class="w-full text-center">
           <div class="w-full max-w-md mx-auto mb-4">
-            <p class="uppercase font-semibold text-xs text-emerald-500 mb-4">
-              <span class="py-2 px-3 border-2 border-emerald-500 rounded-lg"
+            <p class="uppercase font-semibold text-xs text-primary-500 mb-2">
+              <span
+                class="inline-block py-2 px-3 border-2 border-primary-500 rounded-lg scale-90"
                 >Nuxt 3 Ready</span
               >
             </p>

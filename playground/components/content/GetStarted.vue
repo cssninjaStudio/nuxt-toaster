@@ -13,7 +13,7 @@ npm install --save-dev @cssninja/nuxt-toaster
 
 <template>
   <Section>
-    <div class="grid grid-cols-12 gap-8">
+    <div class="grid grid-cols-12 gap-8 pt-10">
       <div class="col-span-full md:col-span-5 md:col-start-2">
         <div class="flex flex-col justify-center h-full w-full max-w-md">
           <h2

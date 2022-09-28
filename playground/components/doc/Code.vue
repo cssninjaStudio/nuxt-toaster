@@ -3,7 +3,7 @@ import 'prismjs'
 import 'prism-theme-vars/base.css'
 </script>
   
-  <script setup lang="ts">
+<script setup lang="ts">
 import Prism from 'vue-prism-component'
 
 export interface DocCodeProps {
