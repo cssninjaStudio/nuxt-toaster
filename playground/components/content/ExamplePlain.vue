@@ -17,10 +17,10 @@ const duration = 3000
       <div class="w-full max-w-xl mb-10 ptablet:text-center ptablet:mx-auto">
         <!-- Icon -->
         <div
-          class="w-20 h-20 flex items-center justify-center rounded-full mb-4 ptablet:mx-auto bg-white dark:bg-muted-1000 shadow-xl shadow-muted-400/10 dark:shadow-muted-800/10"
+          class="w-20 h-20 flex items-center justify-center rounded-full mb-4 ptablet:mx-auto bg-white dark:bg-muted-800 shadow-xl shadow-muted-400/10 dark:shadow-muted-800/10"
         >
           <div
-            class="w-16 h-16 flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500"
+            class="w-16 h-16 flex items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-500 text-indigo-500 dark:text-white"
           >
             <svg class="w-6 h-6" viewBox="0 0 15 15">
               <path
@@ -36,7 +36,7 @@ const duration = 3000
         <h2 class="font-extrabold text-5xl text-muted-800 dark:text-white mb-2">
           Plain CSS example
         </h2>
-        <p class="text-lg text-muted-500 pb-3">
+        <p class="text-lg text-muted-500 dark:text-muted-400 pb-3">
           Nuxt Toaster provides a basic CSS stylesheet that you can import in
           your project if you need prebuilt styles. Hit the invite button below
           to start popping toasts.
@@ -122,7 +122,7 @@ const duration = 3000
                             :class="
                               positionY === 'top'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                : 'text-muted-500 bg-white border-muted-200'
+                                : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
                             "
                           >
                             Top
@@ -141,7 +141,7 @@ const duration = 3000
                             :class="
                               positionY === 'bottom'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                : 'text-muted-500 bg-white border-muted-200'
+                                : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
                             "
                           >
                             Bottom
@@ -169,7 +169,7 @@ const duration = 3000
                               :class="
                                 positionX === 'right'
                                   ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                  : 'text-muted-500 bg-white border-muted-200'
+                                  : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
                               "
                             >
                               Right
@@ -188,7 +188,7 @@ const duration = 3000
                               :class="
                                 positionX === 'center'
                                   ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                  : 'text-muted-500 bg-white border-muted-200'
+                                  : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
                               "
                             >
                               Center
@@ -207,7 +207,7 @@ const duration = 3000
                               :class="
                                 positionX === 'left'
                                   ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                  : 'text-muted-500 bg-white border-muted-200'
+                                  : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
                               "
                             >
                               Left
@@ -235,7 +235,7 @@ const duration = 3000
                             :class="
                               color === 'default'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                : 'text-muted-500 bg-white border-muted-200'
+                                : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
                             "
                           >
                             Default
@@ -254,7 +254,7 @@ const duration = 3000
                             :class="
                               color === 'success'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                : 'text-muted-500 bg-white border-muted-200'
+                                : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
                             "
                           >
                             Success
@@ -273,7 +273,7 @@ const duration = 3000
                             :class="
                               color === 'info'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                : 'text-muted-500 bg-white border-muted-200'
+                                : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
                             "
                           >
                             Info
@@ -292,7 +292,7 @@ const duration = 3000
                             :class="
                               color === 'warning'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                : 'text-muted-500 bg-white border-muted-200'
+                                : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
                             "
                           >
                             Warning
@@ -311,7 +311,7 @@ const duration = 3000
                             :class="
                               color === 'danger'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                : 'text-muted-500 bg-white border-muted-200'
+                                : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
                             "
                           >
                             Danger
@@ -329,7 +329,7 @@ const duration = 3000
                         <input
                           v-model="message"
                           type="text"
-                          class="px-3 py-2 h-10 text-sm leading-5 font-sans w-full rounded-xl bg-white text-slate-600 border border-slate-300 focus:border-slate-300 focus:shadow-lg focus:shadow-gray-300/50 dark:focus:shadow-gray-800/50 placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 dark:focus:border-slate-600 focus:ring-0 outline-transparent focus:outline-dashed focus:outline-gray-300 dark:focus:outline-gray-600 focus:outline-offset-2 transition-all duration-300"
+                          class="px-3 py-2 h-10 text-sm leading-5 font-sans w-full rounded-xl bg-white text-muted-600 border border-muted-300 focus:border-muted-300 focus:shadow-lg focus:shadow-muted-300/50 dark:focus:shadow-muted-800/50 placeholder:text-muted-300 dark:placeholder:text-muted-500 dark:bg-muted-800 dark:text-muted-200 dark:border-muted-700 dark:focus:border-muted-700 transition-all duration-300 tw-accessibility"
                           placeholder="ex: Hello World!"
                         />
                       </div>
@@ -344,7 +344,7 @@ const duration = 3000
                         <input
                           v-model="duration"
                           type="number"
-                          class="px-3 py-2 h-10 text-sm leading-5 font-sans w-full rounded-xl bg-white text-slate-600 border border-slate-300 focus:border-slate-300 focus:shadow-lg focus:shadow-gray-300/50 dark:focus:shadow-gray-800/50 placeholder:text-slate-300 dark:placeholder:text-slate-500 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 dark:focus:border-slate-600 focus:ring-0 outline-transparent focus:outline-dashed focus:outline-gray-300 dark:focus:outline-gray-600 focus:outline-offset-2 transition-all duration-300"
+                          class="px-3 py-2 h-10 text-sm leading-5 font-sans w-full rounded-xl bg-white text-muted-600 border border-muted-300 focus:border-muted-300 focus:shadow-lg focus:shadow-muted-300/50 dark:focus:shadow-muted-800/50 placeholder:text-muted-300 dark:placeholder:text-muted-500 dark:bg-muted-800 dark:text-muted-200 dark:border-muted-700 dark:focus:border-muted-700 transition-all duration-300 tw-accessibility"
                           placeholder="ex: 5000"
                         />
                       </div>
