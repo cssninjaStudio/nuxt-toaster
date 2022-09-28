@@ -52,11 +52,17 @@ function showCustomToast() {
     },
     transition: {
       enterActiveClass: 'transition-all duration-300 ease-out',
-      enterFromClass: 'transform translate-y-1 opacity-0',
+      enterFromClass:
+        props.positionY === 'top'
+          ? 'transform -translate-y-1 opacity-0'
+          : 'transform translate-y-1 opacity-0',
       enterToClass: 'transform translate-y-0 opacity-100',
       leaveActiveClass: 'transition duration-300 ease-in',
       leaveFromClass: 'transform translate-y-0 opacity-100',
-      leaveToClass: 'transform translate-y-1 opacity-0',
+      leaveToClass:
+        props.positionY === 'top'
+          ? 'transform -translate-y-1 opacity-0'
+          : 'transform translate-y-1 opacity-0',
     },
   })
 }
