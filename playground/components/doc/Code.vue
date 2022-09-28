@@ -10,6 +10,7 @@ export interface DocCodeProps {
   code: string
   language?: string
   file?: string
+  scrollable?: boolean
 }
 
 const props = withDefaults(defineProps<DocCodeProps>(), {
@@ -40,7 +41,10 @@ const props = withDefaults(defineProps<DocCodeProps>(), {
         props.file
       }}</span>
     </div>
-    <div class="-mt-6 w-full rounded-b-lg border-t-0 px-4 pb-4">
+    <div
+      class="-mt-6 w-full rounded-b-lg border-t-0 px-4 pb-4"
+      :class="props.scrollable && 'scrollable'"
+    >
       <Prism :language="props.language">{{ props.code }}</Prism>
     </div>
   </div>
@@ -95,6 +99,11 @@ const props = withDefaults(defineProps<DocCodeProps>(), {
 
 :deep(pre.language-javascript) {
   color: #7eb6f6 !important;
+}
+
+:deep(.scrollable pre[class*='language-']) {
+  max-height: 280px;
+  overflow-y: auto;
 }
 </style>
   

@@ -1,16 +1,15 @@
 <script setup>
-import { plainExample } from '@/assets/examples'
+import { customExample } from '@/assets/examples'
 
 const activeTab = ref('tab-1')
 
 const positionY = ref('top')
 const positionX = ref('right')
-const color = ref('default')
-const message = ref('You invited Clarke!')
+const message = ref('You just poked Anna!')
 const duration = 3000
 </script>
-  
-  <template>
+
+<template>
   <Section>
     <div>
       <hr class="mb-10 border-t border-muted-200 dark:border-muted-800" />
@@ -22,35 +21,33 @@ const duration = 3000
           class="w-20 h-20 flex items-center justify-center rounded-full mb-4 ptablet:mx-auto bg-white dark:bg-muted-800 shadow-xl shadow-muted-400/10 dark:shadow-muted-800/10"
         >
           <div
-            class="w-16 h-16 flex items-center justify-center rounded-full bg-indigo-100 dark:bg-indigo-500 text-indigo-500 dark:text-white"
+            class="w-16 h-16 flex items-center justify-center rounded-full bg-teal-100 dark:bg-teal-500 text-teal-500 dark:text-white"
           >
-            <svg class="w-6 h-6" viewBox="0 0 15 15">
+            <svg class="w-8 h-8" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
-                fill-rule="evenodd"
-                d="M.132.162A.5.5 0 0 1 .5 0h14a.5.5 0 0 1 .498.542l-1 11.916a.5.5 0 0 1-.34.432l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1-.34-.432L.002.542a.5.5 0 0 1 .13-.38ZM11 3H4v1h6v2H6v1h4v2.14l-2.5.833L5 9.14V8H4v1.86l3.5 1.167L11 9.86V3Z"
-                clip-rule="evenodd"
+                d="M12 6c-2.67 0-4.33 1.33-5 4c1-1.33 2.17-1.83 3.5-1.5c.76.19 1.31.74 1.91 1.35c.98 1 2.09 2.15 4.59 2.15c2.67 0 4.33-1.33 5-4c-1 1.33-2.17 1.83-3.5 1.5c-.76-.19-1.3-.74-1.91-1.35C15.61 7.15 14.5 6 12 6m-5 6c-2.67 0-4.33 1.33-5 4c1-1.33 2.17-1.83 3.5-1.5c.76.19 1.3.74 1.91 1.35C8.39 16.85 9.5 18 12 18c2.67 0 4.33-1.33 5-4c-1 1.33-2.17 1.83-3.5 1.5c-.76-.19-1.3-.74-1.91-1.35C10.61 13.15 9.5 12 7 12Z"
               />
             </svg>
           </div>
         </div>
         <!-- Title -->
         <h2 class="font-extrabold text-5xl text-muted-800 dark:text-white mb-2">
-          Plain CSS example
+          Custom example
         </h2>
         <p class="text-lg text-muted-500 dark:text-muted-400 pb-3">
-          Nuxt Toaster provides a basic CSS stylesheet that you can import in
-          your project if you need prebuilt styles. Hit the invite button below
-          to start popping toasts.
+          Nuxt Toaster can render other vue components as toasts. Create a
+          component, style it like you want and you're ready to pass it to Nuxt
+          toaster. The following example uses
+          <a href="#" class="font-medium text-primary-500">Tailwind CSS</a>.
         </p>
       </div>
       <div class="grid ltablet:grid-cols-12 lg:grid-cols-12 gap-8">
         <div class="ltablet:col-span-6 lg:col-span-6">
           <div class="flex flex-col justify-center items-center h-full w-full">
-            <MockupBasic
+            <MockupCustom
               :position-y="positionY"
               :position-x="positionX"
-              :color="color"
               :message="message"
               :duration="duration"
             />
@@ -218,109 +215,6 @@ const duration = 3000
                         </div>
                       </div>
                     </div>
-                    <!-- Colors -->
-                    <div class="col-span-2 space-y-2">
-                      <p class="text-sm text-muted-500 dark:text-muted-400">
-                        Colors
-                      </p>
-                      <div class="flex gap-2">
-                        <div class="relative">
-                          <input
-                            v-model="color"
-                            type="radio"
-                            name="t_color"
-                            value="default"
-                            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
-                          />
-                          <div
-                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
-                            :class="
-                              color === 'default'
-                                ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
-                            "
-                          >
-                            Default
-                          </div>
-                        </div>
-                        <div class="relative">
-                          <input
-                            v-model="color"
-                            type="radio"
-                            name="t_color"
-                            value="success"
-                            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
-                          />
-                          <div
-                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
-                            :class="
-                              color === 'success'
-                                ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
-                            "
-                          >
-                            Success
-                          </div>
-                        </div>
-                        <div class="relative">
-                          <input
-                            v-model="color"
-                            type="radio"
-                            name="t_color"
-                            value="info"
-                            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
-                          />
-                          <div
-                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
-                            :class="
-                              color === 'info'
-                                ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
-                            "
-                          >
-                            Info
-                          </div>
-                        </div>
-                        <div class="relative">
-                          <input
-                            v-model="color"
-                            type="radio"
-                            name="t_color"
-                            value="warning"
-                            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
-                          />
-                          <div
-                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
-                            :class="
-                              color === 'warning'
-                                ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
-                            "
-                          >
-                            Warning
-                          </div>
-                        </div>
-                        <div class="relative">
-                          <input
-                            v-model="color"
-                            type="radio"
-                            name="t_color"
-                            value="danger"
-                            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
-                          />
-                          <div
-                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
-                            :class="
-                              color === 'danger'
-                                ? 'border-primary-500 bg-primary-500/10 text-primary-500'
-                                : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
-                            "
-                          >
-                            Danger
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                     <!-- Message -->
                     <div class="xs:col-span-2 space-y-2">
                       <p class="text-sm text-muted-500 dark:text-muted-400">
@@ -364,7 +258,7 @@ const duration = 3000
 
               <!-- Tab content 2 -->
               <div v-else-if="activeTab === 'tab-2'">
-                <DocCode :code="plainExample" scrollable />
+                <DocCode :code="customExample" scrollable />
               </div>
             </div>
           </div>

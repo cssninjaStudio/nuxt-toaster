@@ -40,7 +40,7 @@
         class="group cursor-pointer relative w-full h-[380px] xs:h-[300px] flex items-center justify-center mx-auto"
       >
         <div
-          class="absolute top-1/2 inset-x-0 -translate-y-1/2 w-[380px] h-[380px] xs:w-[300px] xs:h-[300px] mx-auto grid grid-cols-12 scale-90"
+          class="absolute top-1/2 inset-x-0 -translate-y-1/2 w-[380px] h-[380px] xs:w-[300px] xs:h-[300px] mx-auto grid grid-cols-12 scale-90 z-10"
         >
           <div
             v-for="index in 144"
@@ -54,9 +54,13 @@
           ></div>
         </div>
 
+        <div
+          class="absolute top-1/2 inset-x-0 -translate-y-1/2 w-[380px] h-[380px] xs:w-[300px] xs:h-[300px] mx-auto border-2 border-muted-100 dark:border-muted-900 scale-90 z-20"
+        ></div>
+
         <!-- Toast -->
         <div
-          class="relative w-full max-w-md flex items-center shadow-2xl shadow-muted-400/10 dark:shadow-muted-800/10 z-10 xs:scale-90"
+          class="relative w-full max-w-md flex items-center shadow-2xl shadow-muted-400/10 dark:shadow-muted-800/10 z-30 xs:scale-90"
         >
           <!-- Toast icon -->
           <div
