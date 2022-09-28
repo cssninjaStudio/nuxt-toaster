@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h } from 'vue'
-import ToastCustom from '@/components/toast/Custom.vue'
+import ToastAdvanced from '@/components/toast/Advanced.vue'
 import { useNuxtApp } from '#app'
 
 export interface CustomProps {
@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<CustomProps>(), {
 const { $nt } = useNuxtApp()
 let i = 0
 
-function showCustomToast() {
+/* function showCustomToast() {
   i++
   $nt.show({
     content: () =>
@@ -71,10 +71,69 @@ function showCustomToast() {
           : 'transform translate-y-1 opacity-0',
     },
   })
+} */
+
+async function showAdvancedToast() {
+  i++
+  const toast = await $nt.show({
+    content: () =>
+      h(ToastAdvanced, {
+        message: `${props.message} (${i})`,
+      }),
+    dismissible: false,
+    maxToasts: 1,
+    theme: {
+      containerId: 'nt-advanced',
+      containerClass: [
+        'fixed',
+        'top-0',
+        'inset-0',
+        'h-full',
+        'w-full',
+        'pointer-events-none',
+        'md:p-4',
+        'flex',
+        'z-[100]',
+        props.positionY === 'top' ? 'flex-col' : 'flex-col-reverse',
+        props.positionX === 'left' ? 'items-start' : '',
+        props.positionX === 'center' ? 'items-center' : '',
+        props.positionX === 'right' ? 'items-end' : '',
+        props.color === 'info' ? 'text-sky-500' : '',
+        props.color === 'success' ? 'text-teal-500' : '',
+        props.color === 'warning' ? 'text-yellow-500' : '',
+        props.color === 'danger' ? 'text-rose-500' : '',
+        'gap-2',
+      ].join(' '),
+      wrapperClass: [
+        'w-full',
+        'md:max-w-xs',
+        'pointer-events-auto',
+        'rounded',
+        'focus:tw-accessibility-static',
+        '!outline-offset-4',
+      ].join(' '),
+    },
+    transition: {
+      enterActiveClass: 'transition-all duration-300 ease-out',
+      enterFromClass:
+        props.positionY === 'top'
+          ? 'transform -translate-y-1 opacity-0'
+          : 'transform translate-y-1 opacity-0',
+      enterToClass: 'transform translate-y-0 opacity-100',
+      leaveActiveClass: 'transition duration-300 ease-in',
+      leaveFromClass: 'transform translate-y-0 opacity-100',
+      leaveToClass:
+        props.positionY === 'top'
+          ? 'transform -translate-y-1 opacity-0'
+          : 'transform translate-y-1 opacity-0',
+    },
+  })
+
+  toast.el.focus()
 }
 </script>
-  
-  <template>
+    
+    <template>
   <div
     class="flex h-[460px] w-[460px] xs:h-[320px] xs:w-[320px] rounded-full items-end justify-end overflow-hidden border-2 border-muted-200 dark:border-muted-800 bg-muted-50 dark:bg-muted-1000"
   >
@@ -96,24 +155,24 @@ function showCustomToast() {
             class="relative inline-flex h-12 w-12 items-center justify-center rounded-full xs:hidden"
           >
             <img
-              src="https://media.cssninja.io/shuriken/avatars/12.svg"
+              src="https://media.cssninja.io/shuriken/avatars/16.svg"
               class="max-w-full rounded-full object-cover shadow-sm dark:border-transparent"
               alt="Avatar image"
             />
           </div>
           <div>
             <h4 class="font-medium text-muted-800 dark:text-muted-100">
-              Anna L.
+              Jerry K.
             </h4>
-            <p class="text-sm xs:text-[0.7rem] text-muted-400">Sales Manager</p>
+            <p class="text-sm xs:text-[0.7rem] text-muted-400">Scrum Master</p>
           </div>
           <div class="ml-auto">
             <button
               type="button"
               class="inline-flex items-center justify-center h-10 py-2 px-4 text-white bg-primary-500 rounded-lg hover:bg-primary-600 transition-colors duration-300"
-              @click="showCustomToast()"
+              @click="showAdvancedToast()"
             >
-              Poke
+              Hire
             </button>
           </div>
         </div>

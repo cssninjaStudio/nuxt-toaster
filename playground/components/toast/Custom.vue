@@ -7,10 +7,10 @@ const props = defineProps<{
 
 <template>
   <div
-    class="w-full flex items-center gap-1 p-3 md:rounded-xl md:max-w-xs border-2 border-teal-500 bg-white dark:bg-muted-800 shadow-xl shadow-muted-300/10 dark:shadow-muted-800/10 overflow-hidden"
+    class="w-full flex items-center gap-1 p-3 md:rounded-xl md:max-w-xs border-2 border-current bg-white dark:bg-muted-800 shadow-xl shadow-muted-300/10 dark:shadow-muted-800/10 overflow-hidden"
   >
     <div
-      class="h-11 w-11 flex items-center justify-center rounded-full text-teal-500"
+      class="h-11 w-11 flex items-center justify-center rounded-full text-current"
     >
       <svg class="w-7 h-7" viewBox="0 0 256 256">
         <path

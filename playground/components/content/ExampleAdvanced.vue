@@ -1,16 +1,16 @@
 <script setup>
-import { customExample } from '@/assets/examples'
+import { advancedExample } from '@/assets/examples'
 
 const activeTab = ref('tab-1')
 
 const positionY = ref('top')
 const positionX = ref('right')
-const color = ref('info')
-const message = ref('You just poked Anna!')
+const color = ref('success')
+const message = ref('Iam an advanced toast!')
 const duration = 3000
 </script>
-
-<template>
+  
+  <template>
   <Section>
     <div>
       <hr class="mb-10 border-t border-muted-200 dark:border-muted-800" />
@@ -22,31 +22,36 @@ const duration = 3000
           class="w-20 h-20 flex items-center justify-center rounded-full mb-4 ptablet:mx-auto bg-white dark:bg-muted-800 shadow-xl shadow-muted-400/10 dark:shadow-muted-800/10"
         >
           <div
-            class="w-16 h-16 flex items-center justify-center rounded-full bg-teal-100 dark:bg-teal-500 text-teal-500 dark:text-white"
+            class="w-16 h-16 flex items-center justify-center rounded-full bg-yellow-100 dark:bg-yellow-400 text-yellow-500 dark:text-white"
           >
-            <svg class="w-8 h-8" viewBox="0 0 24 24">
+            <svg class="w-8 h-8" viewBox="0 0 256 256">
               <path
                 fill="currentColor"
-                d="M12 6c-2.67 0-4.33 1.33-5 4c1-1.33 2.17-1.83 3.5-1.5c.76.19 1.31.74 1.91 1.35c.98 1 2.09 2.15 4.59 2.15c2.67 0 4.33-1.33 5-4c-1 1.33-2.17 1.83-3.5 1.5c-.76-.19-1.3-.74-1.91-1.35C15.61 7.15 14.5 6 12 6m-5 6c-2.67 0-4.33 1.33-5 4c1-1.33 2.17-1.83 3.5-1.5c.76.19 1.3.74 1.91 1.35C8.39 16.85 9.5 18 12 18c2.67 0 4.33-1.33 5-4c-1 1.33-2.17 1.83-3.5 1.5c-.76-.19-1.3-.74-1.91-1.35C10.61 13.15 9.5 12 7 12Z"
+                d="m195.6 151.5l-52.1 19.2a8.1 8.1 0 0 0-4.8 4.8l-19.2 52.1a8 8 0 0 1-15 0l-19.2-52.1a8.1 8.1 0 0 0-4.8-4.8l-52.1-19.2a8 8 0 0 1 0-15l52.1-19.2a8.1 8.1 0 0 0 4.8-4.8l19.2-52.1a8 8 0 0 1 15 0l19.2 52.1a8.1 8.1 0 0 0 4.8 4.8l52.1 19.2a8 8 0 0 1 0 15Z"
+                opacity=".2"
+              />
+              <path
+                fill="currentColor"
+                d="m198.4 129l-52.2-19.2L127 57.6a16 16 0 0 0-30 0l-19.2 52.2L25.6 129a16 16 0 0 0 0 30l52.2 19.2L97 230.4a16 16 0 0 0 30 0l19.2-52.2l52.2-19.2a16 16 0 0 0 0-30Zm-57.7 34.2a15.9 15.9 0 0 0-9.5 9.5L112 224.9l-19.2-52.2a15.9 15.9 0 0 0-9.5-9.5L31.1 144l52.2-19.2a15.9 15.9 0 0 0 9.5-9.5L112 63.1l19.2 52.2a15.9 15.9 0 0 0 9.5 9.5l52.2 19.2ZM144 40a8 8 0 0 1 8-8h16V16a8 8 0 0 1 16 0v16h16a8 8 0 0 1 0 16h-16v16a8 8 0 0 1-16 0V48h-16a8 8 0 0 1-8-8Zm104 48a8 8 0 0 1-8 8h-8v8a8 8 0 0 1-16 0v-8h-8a8 8 0 0 1 0-16h8v-8a8 8 0 0 1 16 0v8h8a8 8 0 0 1 8 8Z"
               />
             </svg>
           </div>
         </div>
         <!-- Title -->
         <h2 class="font-extrabold text-5xl text-muted-800 dark:text-white mb-2">
-          Custom example
+          Advanced example
         </h2>
         <p class="text-lg text-muted-500 dark:text-muted-400 pb-3">
-          Nuxt Toaster can render other vue components as toasts. Create a
-          component, style it like you want and you're ready to pass it to Nuxt
-          toaster. The following example uses
+          Nuxt Toaster can render completely custom UI elements. It extends the
+          Toast's role and lets it act like a popup or a dialog. The following
+          example uses
           <a href="#" class="font-medium text-primary-500">Tailwind CSS</a>.
         </p>
       </div>
       <div class="grid ltablet:grid-cols-12 lg:grid-cols-12 gap-8">
         <div class="ltablet:col-span-6 lg:col-span-6">
           <div class="flex flex-col justify-center items-center h-full w-full">
-            <MockupCustom
+            <MockupAdvanced
               :position-y="positionY"
               :position-x="positionX"
               :color="color"
@@ -344,7 +349,7 @@ const duration = 3000
 
               <!-- Tab content 2 -->
               <div v-else-if="activeTab === 'tab-2'">
-                <DocCode :code="customExample" scrollable />
+                <DocCode :code="advancedExample" scrollable />
               </div>
             </div>
           </div>

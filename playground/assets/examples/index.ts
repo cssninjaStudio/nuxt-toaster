@@ -80,3 +80,61 @@ export const customExample = `
   }
 </script>
 `
+
+export const advancedExample = `
+<script setup>
+  import { h } from 'vue'
+  import { useNuxtApp } from '#app'
+
+  const { $nt } = useNuxtApp()
+  let i = 0
+
+  async function showAdvancedToast() {
+    i++
+    const toast = await $nt.show({
+      content: () =>
+        h(ToastAdvanced, {
+          message: 'Some nice message in here',
+        }),
+      dismissible: false,
+      maxToasts: 1,
+      theme: {
+        containerId: 'nt-advanced',
+        containerClass: [
+          'fixed',
+          'top-0',
+          'inset-0',
+          'h-full',
+          'w-full',
+          'pointer-events-none',
+          'md:p-4',
+          'flex',
+          'z-[100]',
+          'flex-col',
+          'items-end',
+          'text-sky-500',
+          'gap-2',
+        ].join(' '),
+        wrapperClass: [
+          'w-full',
+          'md:max-w-xs',
+          'pointer-events-auto',
+          'rounded',
+          'focus:tw-accessibility-static',
+          '!outline-offset-4',
+        ].join(' '),
+      },
+      transition: {
+        enterActiveClass: 'transition-all duration-300 ease-out',
+        enterFromClass: 'transform translate-y-1 opacity-0',
+        enterToClass: 'transform translate-y-0 opacity-100',
+        leaveActiveClass: 'transition duration-300 ease-in',
+        leaveFromClass: 'transform translate-y-0 opacity-100',
+        leaveToClass: 'transform translate-y-1 opacity-0',
+      },
+    })
+  
+    toast.el.focus()
+  }
+</script>
+`

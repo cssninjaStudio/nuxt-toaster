@@ -6,6 +6,7 @@ const { isDark } = useDarkmode()
   <div :class="isDark ? 'dark' : ''">
     <Navigation />
     <NuxtPage />
+    <Footer />
   </div>
 </template>
 
