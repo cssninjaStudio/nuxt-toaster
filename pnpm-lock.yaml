@@ -19,6 +19,7 @@ specifiers:
   prismjs: 1.28.0
   standard-version: ^9.5.0
   vue-prism-component: 2.0.0
+  vue-scrollto: ^2.20.0
 
 dependencies:
   '@nuxt/kit': 3.0.0-rc.11
@@ -41,6 +42,7 @@ devDependencies:
   prismjs: 1.28.0
   standard-version: 9.5.0
   vue-prism-component: 2.0.0
+  vue-scrollto: 2.20.0
 
 packages:
 
@@ -1655,6 +1657,10 @@ packages:
 
   /base64-js/1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
+    dev: true
+
+  /bezier-easing/2.1.0:
+    resolution: {integrity: sha512-gbIqZ/eslnUFC1tjEvtz0sgx+xTK20wDnYMIA27VA04R7w6xxXQPZDbibjA9DTWZRA2CXtwHykkVzlCaAJAZig==}
     dev: true
 
   /big.js/5.2.2:
@@ -7842,6 +7848,12 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.2.1
       vue: 3.2.39
+    dev: true
+
+  /vue-scrollto/2.20.0:
+    resolution: {integrity: sha512-7i+AGKJTThZnMEkhIPgrZjyAX+fXV7/rGdg+CV283uZZwCxwiMXaBLTmIc5RTA4uwGnT+E6eJle3mXQfM2OD3A==}
+    dependencies:
+      bezier-easing: 2.1.0
     dev: true
 
   /vue/3.2.39:

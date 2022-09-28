@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import VueScrollTo from 'vue-scrollto'
+const scrollTo = VueScrollTo.scrollTo
+</script>
+
 <template>
   <Section>
     <hr class="mb-10 pt-10 border-t border-muted-200 dark:border-muted-800" />
@@ -30,7 +35,11 @@
           Toaster provides
           <a href="#" class="font-medium text-primary-500">Theming options</a>
           as well as Tailwind and plain CSS based
-          <a href="#" class="font-medium text-primary-500">examples</a>.
+          <a
+            class="font-medium text-primary-500 cursor-pointer"
+            @click.prevent="scrollTo(`#demo-examples`, 800, { offset: 5 })"
+            >examples</a
+          >.
         </p>
       </div>
     </div>
@@ -46,11 +55,6 @@
             v-for="index in 144"
             :key="index"
             class="border border-muted-200 dark:border-muted-800"
-            :class="[
-              //index <= 12 && 'border-t-0',
-              //index >= 133 && 'border-b-0',
-              //index === 0 && '!border-l-0',
-            ]"
           ></div>
         </div>
 

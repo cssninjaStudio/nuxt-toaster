@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import VueScrollTo from 'vue-scrollto'
 const { toggleDark } = useDarkmode()
 const { y } = useWindowScrollFixed()
 
@@ -9,6 +10,7 @@ const isScrolled = computed(() => {
 })
 
 const isChecked = ref(false)
+const scrollTo = VueScrollTo.scrollTo
 </script>
 
 <template>
@@ -61,10 +63,10 @@ const isChecked = ref(false)
           <div
             class="flex flex-col lg:flex-row items-center justify-end gap-x-5 lg:pr-4 space-y-3 lg:space-y-0"
           >
-            <NuxtLink
-              to="/"
-              class="text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300 tw-accessibility"
-              >Examples</NuxtLink
+            <a
+              class="text-muted-700 hover:text-muted-500 dark:text-muted-400 dark:hover:text-muted-200 transition-colors duration-300 cursor-pointer tw-accessibility"
+              @click.prevent="scrollTo(`#demo-examples`, 800, { offset: 5 })"
+              >Examples</a
             >
             <NuxtLink
               to="/api"

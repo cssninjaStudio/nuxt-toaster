@@ -13,7 +13,7 @@
 
     <ContentAnatomy />
 
-    <ContentExamplePlain />
+    <ContentExamplePlain id="demo-examples" />
 
     <ContentExampleCustom />
 

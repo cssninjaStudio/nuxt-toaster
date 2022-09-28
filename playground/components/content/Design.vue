@@ -14,11 +14,20 @@
     </div>
 
     <!-- Toast grid -->
-    <div class="flex flex-col gap-6 w-full mx-auto pb-16">
+    <div class="flex flex-col gap-6 w-full mx-auto pb-12">
       <!-- Row -->
       <div class="flex flex-col md:flex-row justify-center gap-6">
-        <div class="w-full md:max-w-[280px]">
+        <div class="w-full md:max-w-[270px]">
           <ToastIconSuccess />
+        </div>
+      </div>
+      <!-- Row -->
+      <div class="flex flex-col md:flex-row justify-center gap-6 w-full">
+        <div>
+          <ToastUserLikeClose />
+        </div>
+        <div>
+          <ToastLabelWarning />
         </div>
       </div>
       <!-- Row -->
@@ -44,6 +53,21 @@
           <ToastLabelSuccess />
         </div>
       </div>
+      <!-- Row -->
+      <div class="flex flex-col md:flex-row justify-center gap-6">
+        <div class="w-full md:max-w-[250px]">
+          <ToastIconDanger />
+        </div>
+      </div>
+    </div>
+    <!-- Toggle -->
+    <div class="w-full pb-16">
+      <NuxtLink
+        to="/api"
+        class="w-full inline-flex justify-center text-sm font-medium underline-offset-2 hover:underline text-primary-500 cursor-pointer"
+      >
+        Get started with the docs
+      </NuxtLink>
     </div>
   </Section>
 </template>
