@@ -2,7 +2,7 @@
 import VueScrollTo from 'vue-scrollto'
 const scrollTo = VueScrollTo.scrollTo
 
-const activeTab = ref('custom')
+const activeTab = ref('unstyled')
 </script>
 
 <template>
@@ -103,7 +103,7 @@ const activeTab = ref('custom')
           v-else-if="activeTab === 'styled'"
           class="text-sm text-muted-500 dark:text-muted-400"
         >
-          If you need basic styles Nuxt Toaster provides prebuilt
+          If you need basic styling, Nuxt Toaster provides prebuilt
           <strong>CSS presets</strong> that you can import into your project to
           enable a basic set of styles.
         </p>
@@ -256,7 +256,7 @@ const activeTab = ref('custom')
 
     <div class="relative w-full max-w-lg mx-auto mt-10">
       <div
-        class="w-full flex gap-6 p-6 rounded-xl border-2 border-primary-500 bg-primary-100 dark:bg-primary-500/10"
+        class="w-full flex flex-col md:flex-row gap-6 p-6 rounded-xl border-2 border-primary-500 bg-primary-100 dark:bg-primary-500/10"
       >
         <svg
           class="w-8 h-8 min-w-[2rem] text-primary-500"
