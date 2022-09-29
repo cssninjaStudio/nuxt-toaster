@@ -117,10 +117,10 @@ const duration = 3000
                             type="radio"
                             name="y_position"
                             value="top"
-                            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
+                            class="peer absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
                           />
                           <div
-                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
+                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg peer-focus-visible:tw-accessibility-static"
                             :class="
                               positionY === 'top'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
@@ -136,10 +136,10 @@ const duration = 3000
                             type="radio"
                             name="y_position"
                             value="bottom"
-                            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
+                            class="peer absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
                           />
                           <div
-                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
+                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg peer-focus-visible:tw-accessibility-static"
                             :class="
                               positionY === 'bottom'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
@@ -164,10 +164,10 @@ const duration = 3000
                               type="radio"
                               name="x_position"
                               value="left"
-                              class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
+                              class="peer absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
                             />
                             <div
-                              class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
+                              class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg peer-focus-visible:tw-accessibility-static"
                               :class="
                                 positionX === 'left'
                                   ? 'border-primary-500 bg-primary-500/10 text-primary-500'
@@ -183,10 +183,10 @@ const duration = 3000
                               type="radio"
                               name="x_position"
                               value="center"
-                              class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
+                              class="peer absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
                             />
                             <div
-                              class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
+                              class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg peer-focus-visible:tw-accessibility-static"
                               :class="
                                 positionX === 'center'
                                   ? 'border-primary-500 bg-primary-500/10 text-primary-500'
@@ -202,10 +202,10 @@ const duration = 3000
                               type="radio"
                               name="x_position"
                               value="right"
-                              class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
+                              class="peer absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
                             />
                             <div
-                              class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
+                              class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg peer-focus-visible:tw-accessibility-static"
                               :class="
                                 positionX === 'right'
                                   ? 'border-primary-500 bg-primary-500/10 text-primary-500'
@@ -230,10 +230,10 @@ const duration = 3000
                             type="radio"
                             name="t_color"
                             value="default"
-                            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
+                            class="peer absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
                           />
                           <div
-                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
+                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg peer-focus-visible:tw-accessibility-static"
                             :class="
                               color === 'default'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
@@ -249,10 +249,10 @@ const duration = 3000
                             type="radio"
                             name="t_color"
                             value="success"
-                            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
+                            class="peer absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
                           />
                           <div
-                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
+                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg peer-focus-visible:tw-accessibility-static"
                             :class="
                               color === 'success'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
@@ -268,10 +268,10 @@ const duration = 3000
                             type="radio"
                             name="t_color"
                             value="info"
-                            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
+                            class="peer absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
                           />
                           <div
-                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
+                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg peer-focus-visible:tw-accessibility-static"
                             :class="
                               color === 'info'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
@@ -287,10 +287,10 @@ const duration = 3000
                             type="radio"
                             name="t_color"
                             value="warning"
-                            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
+                            class="peer absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
                           />
                           <div
-                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
+                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg peer-focus-visible:tw-accessibility-static"
                             :class="
                               color === 'warning'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
@@ -306,10 +306,10 @@ const duration = 3000
                             type="radio"
                             name="t_color"
                             value="danger"
-                            class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
+                            class="peer absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
                           />
                           <div
-                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
+                            class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg peer-focus-visible:tw-accessibility-static"
                             :class="
                               color === 'danger'
                                 ? 'border-primary-500 bg-primary-500/10 text-primary-500'
