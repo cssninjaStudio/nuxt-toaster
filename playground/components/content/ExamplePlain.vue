@@ -3,7 +3,7 @@ import { plainExample } from '@/assets/examples'
 
 const activeTab = ref('tab-1')
 
-const positionY = ref('top')
+const positionY = ref('bottom')
 const positionX = ref('right')
 const color = ref('default')
 const message = ref('You invited Clarke!')
@@ -163,18 +163,18 @@ const duration = 3000
                               v-model="positionX"
                               type="radio"
                               name="x_position"
-                              value="right"
+                              value="left"
                               class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
                             />
                             <div
                               class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
                               :class="
-                                positionX === 'right'
+                                positionX === 'left'
                                   ? 'border-primary-500 bg-primary-500/10 text-primary-500'
                                   : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
                               "
                             >
-                              Right
+                              Left
                             </div>
                           </div>
                           <div class="relative">
@@ -201,18 +201,18 @@ const duration = 3000
                               v-model="positionX"
                               type="radio"
                               name="x_position"
-                              value="left"
+                              value="right"
                               class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10"
                             />
                             <div
                               class="inline-flex items-center justify-center w-16 h-8 py-2 px-4 font-semibold text-xs border-2 rounded-lg"
                               :class="
-                                positionX === 'left'
+                                positionX === 'right'
                                   ? 'border-primary-500 bg-primary-500/10 text-primary-500'
                                   : 'text-muted-500 dark:text-muted-400 bg-white dark:bg-muted-800 border-muted-200 dark:border-muted-700'
                               "
                             >
-                              Left
+                              Right
                             </div>
                           </div>
                         </div>

@@ -1,3 +1,53 @@
+<script setup>
+import { useNuxtApp } from '#app'
+const positionXList = ref(['left', 'center', 'right'])
+const positionYList = ref(['top', 'bottom'])
+const colorList = ref(['info', 'success', 'warning', 'danger'])
+
+const { $nt } = useNuxtApp()
+let i = 0
+const isLoading = ref(false)
+
+function showRandomToast() {
+  isLoading.value = true
+  i++
+  $nt.show({
+    content: `Hello, Iam a Nuxt toast`,
+    duration: 1000,
+    maxToasts: 1,
+    theme: {
+      containerId: 'nt-container',
+      containerClass: [
+        `nt-${
+          positionYList.value[
+            Math.floor(Math.random() * positionYList.value.length)
+          ]
+        }-${
+          positionXList.value[
+            Math.floor(Math.random() * positionXList.value.length)
+          ]
+        }`,
+      ].join(' '),
+      wrapperClass: `nt-${
+        colorList.value[Math.floor(Math.random() * colorList.value.length)]
+      }`,
+    },
+    transition: {
+      enterActiveClass: 'nt-enter-active',
+      enterFromClass: 'nt-enter-from',
+      enterToClass: 'nt-enter-to',
+      leaveActiveClass: 'nt-leave-active',
+      leaveFromClass: 'nt-leave-from',
+      leaveToClass: 'nt-leave-to',
+    },
+  })
+  const timeout = setTimeout(() => {
+    isLoading.value = false
+    clearTimeout(timeout)
+  }, 1000)
+}
+</script>
+
 <template>
   <section
     class="min-h-screen w-full overflow-hidden bg-muted-100 dark:bg-muted-900 ltablet:bg-red"
@@ -83,7 +133,13 @@
             <!-- Copy button -->
             <button
               type="button"
-              class="w-full lg:w-auto lg:absolute top-2 right-2 h-12 lg:h-10 py-2 px-5 rounded-lg text-sm text-white bg-indigo-500 hover:shadow-xl hover:shadow-indigo-500/20 dark:hover:shadow-indigo-800/10 transition-all duration-300 tw-accessibility"
+              class="relative w-full lg:w-auto flex lg:inline-flex items-center justify-center lg:absolute lg:top-2 lg:right-2 h-12 lg:h-10 py-2 px-5 rounded-lg text-sm text-white bg-indigo-500 hover:shadow-xl hover:shadow-indigo-500/20 dark:hover:shadow-indigo-800/10 transition-all duration-300 tw-accessibility"
+              :class="
+                isLoading
+                  ? 'button-loading pointer-events-none opacity-80'
+                  : 'animate-pulse'
+              "
+              @click="showRandomToast()"
             >
               Try Me
             </button>
