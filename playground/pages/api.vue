@@ -1,3 +1,10 @@
+<script setup>
+</script>
+
 <template>
-  <h1>API page</h1>
+  <Section>
+    <div class="py-20">
+      <h2>Markdown</h2>
+    </div>
+  </Section>
 </template>

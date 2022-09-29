@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import VueScrollTo from 'vue-scrollto'
 const scrollTo = VueScrollTo.scrollTo
+
+const activeTab = ref('custom')
 </script>
 
 <template>
@@ -44,6 +46,77 @@ const scrollTo = VueScrollTo.scrollTo
       </div>
     </div>
 
+    <div class="w-full max-w-xl mx-auto flex flex-col gap-2">
+      <!-- Tabs -->
+      <div class="flex items-center justify-center overflow-hidden mb-4">
+        <div
+          class="flex justify-center gap-x-6 grow font-sans border-b border-muted-200 dark:border-muted-800 xs:overflow-x-auto"
+        >
+          <button
+            type="button"
+            class="pb-2 select-none border-b-2 cursor-pointer transition-colors duration-300"
+            :class="
+              activeTab === 'unstyled'
+                ? 'text-muted-700 dark:text-muted-100 border-primary-500'
+                : 'text-muted-300 hover:text-muted-400 dark:text-muted-500 dark:hover:text-muted-400 border-transparent'
+            "
+            @click="activeTab = 'unstyled'"
+          >
+            Unstyled
+          </button>
+          <button
+            type="button"
+            class="pb-2 select-none border-b-2 cursor-pointer transition-colors duration-300"
+            :class="
+              activeTab === 'styled'
+                ? 'text-muted-700 dark:text-muted-100 border-primary-500'
+                : 'text-muted-300 hover:text-muted-400 dark:text-muted-500 dark:hover:text-muted-400 border-transparent'
+            "
+            @click="activeTab = 'styled'"
+          >
+            CSS Styled
+          </button>
+          <button
+            type="button"
+            class="pb-2 select-none border-b-2 cursor-pointer transition-colors duration-300"
+            :class="
+              activeTab === 'custom'
+                ? 'text-muted-700 dark:text-muted-100 border-primary-500'
+                : 'text-muted-300 hover:text-muted-400 dark:text-muted-500 dark:hover:text-muted-400 border-transparent'
+            "
+            @click="activeTab = 'custom'"
+          >
+            Custom UI
+          </button>
+        </div>
+      </div>
+      <div class="text-center mb-4">
+        <p
+          v-if="activeTab === 'unstyled'"
+          class="text-sm text-muted-500 dark:text-muted-400"
+        >
+          Nuxt Toaster is a toast engine, meaning that it primarily delivers
+          <strong>unstyled</strong> toast elements. Styling is done separatly
+          via CSS and / or theming options.
+        </p>
+        <p
+          v-else-if="activeTab === 'styled'"
+          class="text-sm text-muted-500 dark:text-muted-400"
+        >
+          If you need basic styles Nuxt Toaster provides prebuilt
+          <strong>CSS presets</strong> that you can import into your project to
+          enable a basic set of styles.
+        </p>
+        <p
+          v-else-if="activeTab === 'custom'"
+          class="text-sm text-muted-500 dark:text-muted-400"
+        >
+          As a rendering engine Nuxt Toaster can render external components that
+          can also receive data and properties from the toast container itself.
+        </p>
+      </div>
+    </div>
+
     <div class="relative w-full max-w-3xl mx-auto">
       <div
         class="group cursor-pointer relative w-full h-[380px] xs:h-[300px] flex items-center justify-center mx-auto"
@@ -62,8 +135,53 @@ const scrollTo = VueScrollTo.scrollTo
           class="absolute top-1/2 inset-x-0 -translate-y-1/2 w-[380px] h-[380px] xs:w-[300px] xs:h-[300px] mx-auto border-2 border-muted-100 dark:border-muted-900 scale-90 z-20"
         ></div>
 
-        <!-- Toast -->
+        <!-- Toast Unstyled -->
         <div
+          v-if="activeTab === 'unstyled'"
+          class="relative w-full max-w-sm flex items-center rounded-xl border-2 border-dashed border-muted-300 dark:border-muted-500 z-30 xs:scale-90"
+        >
+          <!-- Toast content -->
+          <div
+            class="relative w-full h-24 xs:h-20 flex items-center justify-center px-8"
+          >
+            <span class="text-lg xs:text-sm text-muted-600 dark:text-muted-400"
+              >Nuxt has been installed!</span
+            >
+            <!-- Legend -->
+            <div class="absolute -top-24 inset-x-0 mx-auto text-center">
+              <span
+                class="text-muted-500 dark:text-muted-400 opacity-0 group-hover:opacity-100 after:content-[''] after:absolute after:top-8 after:inset-x-0 after:mx-auto after:h-0 group-hover:after:h-12 after:w-px after:pr-1 after:border-l-2 after:border-muted-300 dark:after:border-muted-700 transition-all duration-300"
+                >Unstyled content</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Toast Styled -->
+        <div
+          v-else-if="activeTab === 'styled'"
+          class="relative w-full max-w-sm flex items-center shadow-2xl shadow-muted-400/10 dark:shadow-muted-800/10 z-30 xs:scale-90"
+        >
+          <!-- Toast content -->
+          <div
+            class="relative w-full h-24 xs:h-20 flex items-center px-8 rounded-xl bg-white dark:bg-muted-800"
+          >
+            <span class="text-lg xs:text-sm text-muted-600 dark:text-muted-400"
+              >Nuxt has been installed!</span
+            >
+            <!-- Legend -->
+            <div class="absolute -top-24 inset-x-0 mx-auto text-center">
+              <span
+                class="text-muted-500 dark:text-muted-400 opacity-0 group-hover:opacity-100 after:content-[''] after:absolute after:top-8 after:inset-x-0 after:mx-auto after:h-0 group-hover:after:h-12 after:w-px after:pr-1 after:border-l-2 after:border-muted-300 dark:after:border-muted-700 transition-all duration-300"
+                >Styled content</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Toast Custom -->
+        <div
+          v-else-if="activeTab === 'custom'"
           class="relative w-full max-w-md flex items-center shadow-2xl shadow-muted-400/10 dark:shadow-muted-800/10 z-30 xs:scale-90"
         >
           <!-- Toast icon -->
@@ -132,6 +250,40 @@ const scrollTo = VueScrollTo.scrollTo
               </span>
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="relative w-full max-w-lg mx-auto mt-10">
+      <div
+        class="w-full flex gap-6 p-6 rounded-xl border-2 border-primary-500 bg-primary-100 dark:bg-primary-500/10"
+      >
+        <svg
+          class="w-8 h-8 min-w-[2rem] text-primary-500"
+          viewBox="0 0 256 256"
+        >
+          <path fill="currentColor" d="M216 160h-56v56l56-56z" opacity=".2" />
+          <path
+            fill="currentColor"
+            d="M96 104h64a8 8 0 0 0 0-16H96a8 8 0 0 0 0 16Zm0 32h64a8 8 0 0 0 0-16H96a8 8 0 0 0 0 16Zm32 16H96a8 8 0 0 0 0 16h32a8 8 0 0 0 0-16Z"
+          />
+          <path
+            fill="currentColor"
+            d="M224 156.7V48a16 16 0 0 0-16-16H48a16 16 0 0 0-16 16v160a16 16 0 0 0 16 16h108.7a15.9 15.9 0 0 0 11.3-4.7l51.3-51.3a16.3 16.3 0 0 0 3.3-4.9h.1a17.4 17.4 0 0 0 1.3-6.4ZM48 48h160v104h-48a8 8 0 0 0-8 8v48H48Zm148.7 120L168 196.7V168Z"
+          />
+        </svg>
+        <div>
+          <h4
+            class="font-medium text-lg text-primary-700 dark:text-primary-500 mb-1"
+          >
+            Important note
+          </h4>
+          <p class="text-sm text-primary-600 dark:text-primary-300">
+            Please keep in mind that Nuxt Toaster is a
+            <strong>toast rendering engine</strong> and not a classic toasting
+            library that ships with prebuilt styles. Styles presets and custom
+            examples are provided for inspiration, so you can build you own.
+          </p>
         </div>
       </div>
     </div>
