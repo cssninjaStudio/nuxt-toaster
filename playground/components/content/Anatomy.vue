@@ -96,7 +96,7 @@ const activeTab = ref('unstyled')
           class="text-sm text-muted-500 dark:text-muted-400"
         >
           Nuxt Toaster is a toast engine, meaning that it primarily delivers
-          <strong>unstyled</strong> toast elements. Styling is done separatly
+          <strong>unstyled</strong> toast elements. Styling is done separately
           via CSS and / or theming options.
         </p>
         <p
@@ -282,7 +282,7 @@ const activeTab = ref('unstyled')
             Please keep in mind that Nuxt Toaster is a
             <strong>toast rendering engine</strong> and not a classic toasting
             library that ships with prebuilt styles. Styles presets and custom
-            examples are provided for inspiration, so you can build you own.
+            examples are provided for inspiration, so you can build your own.
           </p>
         </div>
       </div>
