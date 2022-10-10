@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.1.1...v0.1.2) (2022-10-10)
+
+
+### Bug Fixes
+
+* createNinjaToaster without theme when inherited from app ([51b295a](https://github.com/cssninjaStudio/nuxt-toaster/commit/51b295a09616d468517a9da02fdc01d02c4ac929))
+
 ### [0.1.1](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.1.0...v0.1.1) (2022-09-25)
 
 
