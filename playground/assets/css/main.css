@@ -1,0 +1,7 @@
+@import './modules/utilities.css';
+@import './modules/accessibility.css';
+@import './modules/nt.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

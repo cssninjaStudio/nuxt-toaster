@@ -32,12 +32,19 @@
     "@antfu/eslint-config": "^0.27.0",
     "@nuxt/module-builder": "latest",
     "@nuxt/schema": "^3.0.0-rc.11",
-    "eslint": "8.23.1",
+    "@nuxtjs/tailwindcss": "^5.3.3",
+    "@types/prismjs": "^1.26.0",
+    "eslint": "8.24.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier-vue": "4.2.0",
     "eslint-plugin-tailwindcss": "3.6.1",
     "eslint-plugin-vuejs-accessibility": "1.2.0",
     "nuxt": "^3.0.0-rc.11",
-    "standard-version": "^9.5.0"
+    "prism-theme-vars": "0.2.3",
+    "prismjs": "1.28.0",
+    "standard-version": "^9.5.0",
+    "vue-prism-component": "2.0.0",
+    "vue-scrollto": "^2.20.0",
+    "vue3-markdown-it": "^1.0.10"
   }
 }

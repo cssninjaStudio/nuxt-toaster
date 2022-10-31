@@ -1,0 +1,195 @@
+/* ==========================================================================
+Variables
+========================================================================== */
+
+:root {
+  --nt-bg: #fff;
+  --nt-color: #1f2630;
+  --nt-bg-success: #18c78a;
+  --nt-color-success: #fff;
+  --nt-bg-info: #1f94ed;
+  --nt-color-info: #fff;
+  --nt-bg-warning: #edac1f;
+  --nt-color-warning: #fff;
+  --nt-bg-danger: #ed1f4c;
+  --nt-color-danger: #fff;
+  --nt-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+Base
+========================================================================== */
+
+#nt-container {
+  /* make container fit the screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 100;
+  pointer-events: none;
+
+  /* position the toasts using flexbox */
+  display: flex;
+
+  /**
+   * position all toasts in bottom of the screen 
+   * - use "flex-direction: column;" to position in top screen
+   */
+  flex-direction: column-reverse;
+
+  /**
+   * align all toasts to the center
+   * - use "align-items: start" to aling to the left
+   * - use "align-items: end" to aling to the right
+   */
+  align-items: center;
+
+  /* add some space between toasts and screen */
+  padding: 2rem;
+  gap: 1rem;
+}
+
+#nt-container [role='alert'] {
+  /* allow toasts to be interactive */
+  pointer-events: auto;
+
+  /* add styles to toasts */
+  font-size: 0.9rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: var(--nt-bg);
+  box-shadow: var(--nt-shadow);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+Colors
+========================================================================== */
+
+#nt-container .nt-success {
+  background-color: var(--nt-bg-success);
+  color: var(--nt-color-success);
+}
+
+#nt-container .nt-info {
+  background-color: var(--nt-bg-info);
+  color: var(--nt-color-info);
+}
+
+#nt-container .nt-warning {
+  background-color: var(--nt-bg-warning);
+  color: var(--nt-color-warning);
+}
+
+#nt-container .nt-danger {
+  background-color: var(--nt-bg-danger);
+  color: var(--nt-color-danger);
+}
+
+/* ==========================================================================
+Position
+========================================================================== */
+
+/* Top right position */
+#nt-container.nt-top-right {
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Top center position */
+#nt-container.nt-top-center {
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Top left position */
+#nt-container.nt-top-left {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Bottom right position */
+#nt-container.nt-bottom-right {
+  align-items: flex-end;
+}
+
+/* Bottom center position */
+#nt-container.nt-bottom-center {
+  align-items: center;
+}
+
+/* Bottom left position */
+#nt-container.nt-bottom-left {
+  align-items: flex-start;
+}
+
+/* ==========================================================================
+Transitions
+========================================================================== */
+
+.nt-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+#nt-container.nt-bottom-right .nt-enter-from,
+#nt-container.nt-bottom-left .nt-enter-from,
+#nt-container.nt-bottom-center .nt-enter-from {
+  transform: translateY(0.5rem);
+  opacity: 0;
+}
+
+#nt-container.nt-top-right .nt-enter-from,
+#nt-container.nt-top-left .nt-enter-from,
+#nt-container.nt-top-center .nt-enter-from {
+  transform: translateY(-0.5rem);
+  opacity: 0;
+}
+
+.nt-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.nt-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.nt-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#nt-container.nt-bottom-right .nt-leave-to,
+#nt-container.nt-bottom-left .nt-leave-to,
+#nt-container.nt-bottom-center .nt-enter-to {
+  transform: translateY(0.5rem);
+  opacity: 0;
+}
+
+#nt-container.nt-top-right .nt-leave-to,
+#nt-container.nt-top-left .nt-leave-to,
+#nt-container.nt-top-center .nt-enter-to {
+  transform: translateY(-0.5rem);
+  opacity: 0;
+}
+
+/* ==========================================================================
+Responsive
+========================================================================== */
+
+@media (max-width: 767px) {
+  #nt-container {
+    /* fit toasts to screen on mobile */
+    padding: 0;
+  }
+
+  #nt-container [role='alert'] {
+    width: 100%;
+    border-radius: 0;
+  }
+}

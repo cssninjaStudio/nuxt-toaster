@@ -1,0 +1,5 @@
+@layer utilities {
+  .button-loading {
+    @apply relative !text-transparent after:absolute after:h-5 after:w-5 after:rounded-full after:border-[0.20rem] after:border-slate-300 after:border-t-gray-100 after:opacity-90 after:animate-spin;
+  }
+}
