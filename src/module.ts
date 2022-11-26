@@ -3,6 +3,8 @@ import { fileURLToPath } from 'url'
 import { addImports, addPlugin, defineNuxtModule } from '@nuxt/kit'
 import type { NinjaToasterBaseProps } from './props'
 
+export * from './props'
+
 export interface ModuleOptions {
   installPlugin?: boolean
 }
