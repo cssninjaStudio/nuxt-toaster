@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.1.2...v0.1.3) (2022-11-26)
+
+
+### Bug Fixes
+
+* export toaster props interfaces ([aeb22e1](https://github.com/cssninjaStudio/nuxt-toaster/commit/aeb22e1d799ac622901af40a8127119be7c95d5c))
+
 ### [0.1.2](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.1.1...v0.1.2) (2022-10-10)
 
 
