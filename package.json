@@ -24,20 +24,21 @@
     "release": "standard-version && git push --follow-tags origin main && npm publish"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.0.0-rc.11",
-    "@vueuse/core": "^9.2.0",
-    "defu": "^6.1.0"
+    "@nuxt/kit": "^3.0.0",
+    "@vueuse/core": "^9.6.0",
+    "defu": "^6.1.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.27.0",
-    "@nuxt/module-builder": "latest",
-    "@nuxt/schema": "^3.0.0-rc.11",
-    "eslint": "8.23.1",
+    "@antfu/eslint-config": "^0.31.0",
+    "@nuxt/module-builder": "^0.2.1",
+    "@nuxt/schema": "^3.0.0",
+    "eslint": "8.28.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier-vue": "4.2.0",
-    "eslint-plugin-tailwindcss": "3.6.1",
-    "eslint-plugin-vuejs-accessibility": "1.2.0",
-    "nuxt": "^3.0.0-rc.11",
-    "standard-version": "^9.5.0"
+    "eslint-plugin-tailwindcss": "3.7.0",
+    "eslint-plugin-vuejs-accessibility": "2.0.0",
+    "nuxt": "^3.0.0",
+    "standard-version": "^9.5.0",
+    "vue": "^3.2.45"
   }
 }

@@ -50,7 +50,7 @@ export function useNinjaToasterProgress() {
     return Math.round(ratio * 1000) / 1000
   })
 
-  let interval
+  let interval: any
   tryOnMounted(() => {
     interval = setInterval(() => {
       if (!state.isHovered.value) {
