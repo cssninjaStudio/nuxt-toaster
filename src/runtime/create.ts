@@ -110,7 +110,8 @@ export function createNinjaToaster(
   }
 
   function clear(theme: NinjaToasterTheme | string) {
-    const containerId = typeof theme === 'string' ? theme : theme.containerId
+    const containerId =
+      typeof theme === 'string' ? theme : theme.containerId ?? 'nt-container'
 
     events.emit(`clear-${containerId}`)
     if (queues.has(containerId)) {

@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config'
+// @ts-expect-error - this is a playground
 import NinjaNuxtToaster from '..'
 
 export default defineNuxtConfig({

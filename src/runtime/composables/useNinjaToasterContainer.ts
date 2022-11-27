@@ -5,7 +5,7 @@ import type { NinjaToasterTheme } from '../../theme'
 
 export function useNinjaToasterContainer(theme?: NinjaToasterTheme) {
   const container = ref<Element | null>(null)
-  const containerId = theme?.containerId || 'nt-container'
+  const containerId = theme?.containerId ?? 'nt-container'
 
   tryOnBeforeMount(() => {
     container.value = document.getElementById(containerId)
