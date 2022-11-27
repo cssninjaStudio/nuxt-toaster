@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.2.0...v0.2.1) (2022-11-27)
+
+
+### Bug Fixes
+
+* default container id clear ([14cb7c7](https://github.com/cssninjaStudio/nuxt-toaster/commit/14cb7c72ae6528346fbfbbc7a77bcade30efd38d))
+
 ## [0.2.0](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.1.3...v0.2.0) (2022-11-27)
 
 
