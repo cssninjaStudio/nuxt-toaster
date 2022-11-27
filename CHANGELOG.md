@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.1.3...v0.2.0) (2022-11-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to nuxt 3.0.0
+
+### Features
+
+* upgrade to nuxt 3.0.0 ([376663f](https://github.com/cssninjaStudio/nuxt-toaster/commit/376663f53e08f4084aad5b6b75f030d723b72043))
+
 ### [0.1.3](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.1.2...v0.1.3) (2022-11-26)
 
 
