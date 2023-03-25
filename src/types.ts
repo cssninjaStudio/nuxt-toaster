@@ -1,4 +1,4 @@
-import type { Component, TransitionProps } from 'vue'
+import type { Ref, Component, TransitionProps } from 'vue'
 
 export interface ModuleOptions {
   installPlugin?: boolean
