@@ -219,7 +219,6 @@ export default defineComponent({
     })
 
     return () => {
-      const contentSuspense = () => h(Suspense, null, content.value)
       const wrapper = withDirectives(
         h(
           'div',
@@ -237,7 +236,7 @@ export default defineComponent({
             onKeydown,
             onClick
           },
-          contentSuspense
+          h(Suspense, null, content.value)
         ),
         [[vShow, isActive.value]]
       )
