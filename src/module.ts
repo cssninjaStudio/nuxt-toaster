@@ -1,8 +1,9 @@
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { addImports, addPlugin, defineNuxtModule } from '@nuxt/kit'
-import type { NinjaToasterBaseProps } from './types'
-import { ModuleOptions } from '@nuxt/schema'
+import type { ModuleOptions, NinjaToasterBaseProps } from './types'
+
+export * from './types'
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {

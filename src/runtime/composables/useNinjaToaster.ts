@@ -1,8 +1,7 @@
 import { useNuxtApp } from '#imports'
+import { NinjaToasterInstance } from '../../types'
 
-type NinjaToasterInstance = ReturnType<typeof createNinjaToaster>
-
-export function useNinjaToaster() {
+export function useNinjaToaster(): NinjaToasterInstance {
   const { $nt } = useNuxtApp()
-  return $nt as NinjaToasterInstance
+  return $nt
 }

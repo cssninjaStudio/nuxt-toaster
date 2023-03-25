@@ -1,22 +1,14 @@
-import { type DefineComponent, type App, type VNode, h, render } from 'vue'
+import { type App, type VNode, h, render } from 'vue'
 import { defu } from 'defu'
 
-import type { NinjaToasterTheme, NinjaToasterBaseProps, NinjaToasterProps, NinjaToasterShow } from '../types'
+import type { NinjaToasterTheme, NinjaToasterBaseProps, NinjaToasterProps, NinjaToasterShow, NinjaToasterInstance, ComponentProps } from '../types'
 import type { NinjaToasterRenderQueue } from './queue'
 import { type NinjaToastEventBus, createEventBus } from './events'
 import NinjaToaster from './components/NinjaToaster'
 
 import { resolveComponent, useAppConfig, useNuxtApp } from '#imports'
-import type * as _AllComponents from '#components'
-
-type DefaultProps = InstanceType<DefineComponent>['$props']
-
-type ComponentProps<T> = T extends keyof typeof _AllComponents
-  ? Omit<InstanceType<(typeof _AllComponents)[T]>['$props'], keyof DefaultProps>
-  : undefined
 
 function createElement() {
-  // @ts-ignore
   if (process.server) {
     return null
   }
@@ -56,11 +48,11 @@ function ensureClassesArray(theme?: NinjaToasterTheme) {
 
 export function createNinjaToaster(
   createProps: Omit<NinjaToasterProps, 'content'> = {}
-) {
+): NinjaToasterInstance {
   const events = createEventBus()
   const queues: Map<string, NinjaToasterRenderQueue> = new Map()
 
-  function showComponent<T extends keyof typeof _AllComponents>(name: T, {
+  function showComponent<T extends keyof typeof import('#components')>(name: T, {
     props,
     children,
     options,
@@ -110,7 +102,6 @@ export function createNinjaToaster(
         }
       })
 
-      // @ts-ignore
       if (process.server) {
         resolve({
           el: null,
