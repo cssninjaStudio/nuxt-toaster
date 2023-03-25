@@ -1,6 +1,5 @@
 import type { Component, TransitionProps } from 'vue'
 
-
 export interface ModuleOptions {
   installPlugin?: boolean
 }
@@ -30,4 +29,23 @@ export interface NinjaToasterTheme {
   wrapperClass?: string | string[];
   transition?: TransitionProps
   maxToasts?: number
+}
+
+export interface NinjaPausableTimeout {
+  pausedAt: Ref<number>
+  startedAt: Ref<number>
+  remaining: Ref<number>
+  start: () => void
+  stop: () => void
+  pause: () => void
+  resume: () => void
+}
+
+export interface NinjaToasterState {
+  isHovered: Ref<boolean>
+  isActive: Ref<boolean>
+  timer: NinjaPausableTimeout
+  duration: number
+  click: (event: Event) => void | Promise<void>
+  close: () => void | Promise<void>
 }

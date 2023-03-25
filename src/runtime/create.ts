@@ -1,4 +1,4 @@
-import { type App, type VNode, h, render } from 'vue'
+import { type DefineComponent, type App, type VNode, h, render } from 'vue'
 import { defu } from 'defu'
 
 import type { NinjaToasterTheme, NinjaToasterBaseProps, NinjaToasterProps, NinjaToasterShow } from '../types'
@@ -9,8 +9,10 @@ import NinjaToaster from './components/NinjaToaster'
 import { resolveComponent, useAppConfig, useNuxtApp } from '#imports'
 import type * as _AllComponents from '#components'
 
+type DefaultProps = InstanceType<DefineComponent>['$props']
+
 type ComponentProps<T> = T extends keyof typeof _AllComponents
-  ? InstanceType<(typeof _AllComponents)[T]>['$props']
+  ? Omit<InstanceType<(typeof _AllComponents)[T]>['$props'], keyof DefaultProps>
   : undefined
 
 function createElement() {

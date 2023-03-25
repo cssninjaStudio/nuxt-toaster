@@ -1,7 +1,9 @@
 import { ref } from 'vue'
 import { tryOnBeforeUnmount } from '@vueuse/core'
+import { NinjaPausableTimeout } from '../../types'
 
-export function usePausableTimeout(callback: Function, timeout?: number) {
+
+export function useNinjaPausableTimeout(callback: Function, timeout?: number): NinjaPausableTimeout {
   const pausedAt = ref(0)
   const startedAt = ref(0)
   const remaining = ref(0)

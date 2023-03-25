@@ -1,17 +1,8 @@
-import type { InjectionKey, Ref } from 'vue'
+import type { InjectionKey } from 'vue'
 import { computed, inject, provide, ref } from 'vue'
 import { tryOnBeforeUnmount, tryOnMounted } from '@vueuse/core'
 
-import type { usePausableTimeout } from './usePausableTimeout'
-
-export interface NinjaToasterState {
-  isHovered: Ref<boolean>
-  isActive: Ref<boolean>
-  timer: ReturnType<typeof usePausableTimeout>
-  duration: number
-  click: (event: Event) => void | Promise<void>
-  close: () => void | Promise<void>
-}
+import { NinjaToasterState } from '../../types'
 
 export const NinjaToasterStateKey = Symbol.for(
   'NinjaToasterState'

@@ -1,5 +1,6 @@
 import type { PropType } from 'vue'
 import {
+  Suspense,
   Transition,
   computed,
   defineComponent,
@@ -14,7 +15,7 @@ import { defu } from 'defu'
 
 import type { NinjaToastEventBus } from '../events'
 import type { NinjaToasterProps } from '../../types'
-import { usePausableTimeout } from '../composables/usePausableTimeout'
+import { useNinjaPausableTimeout } from '../composables/useNinjaPausableTimeout'
 import { useNinjaToasterContainer } from '../composables/useNinjaToasterContainer'
 import { createNinjaToasterState } from '../composables/useNinjaToasterState'
 import { type NinjaToasterRenderQueue, createRenderQueue } from '../queue'
@@ -66,7 +67,7 @@ export default defineComponent({
     })
 
     const { container, containerId } = useNinjaToasterContainer(theme)
-    const timer = usePausableTimeout(() => {
+    const timer = useNinjaPausableTimeout(() => {
       close()
     }, props.duration)
 
@@ -218,6 +219,7 @@ export default defineComponent({
     })
 
     return () => {
+      const contentSuspense = () => h(Suspense, null, [content.value])
       const wrapper = withDirectives(
         h(
           'div',
@@ -235,7 +237,7 @@ export default defineComponent({
             onKeydown,
             onClick
           },
-          content.value
+          contentSuspense
         ),
         [[vShow, isActive.value]]
       )
