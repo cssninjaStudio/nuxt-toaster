@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.3.0...v0.3.1) (2023-03-25)
+
+
+### Bug Fixes
+
+* theme reactivity ([67dc3a0](https://github.com/cssninjaStudio/nuxt-toaster/commit/67dc3a0705e710b1259f066258aa39133669c1db))
+
 ## [0.3.0](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.2.1...v0.3.0) (2023-03-25)
 
 
