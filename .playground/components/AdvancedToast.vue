@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// @ts-expect-error
 import { useNinjaToasterProgress, useNinjaToasterState } from '#imports'
 
 const props = defineProps<{

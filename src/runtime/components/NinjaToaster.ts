@@ -1,4 +1,4 @@
-import type { PropType, TransitionProps } from 'vue'
+import type { PropType } from 'vue'
 import {
   Transition,
   computed,
@@ -10,6 +10,7 @@ import {
   vShow,
   withDirectives
 } from 'vue'
+import { defu } from 'defu'
 
 import type { NinjaToastEventBus } from '../events'
 import type { NinjaToasterProps } from '../../types'
@@ -33,7 +34,7 @@ export default defineComponent({
     },
     theme: {
       type: Object as PropType<NinjaToasterProps['theme']>,
-      default: () => ({} as NinjaToasterProps['theme'])
+      default: () => ({})
     },
     dismissible: {
       type: Boolean,
@@ -42,10 +43,6 @@ export default defineComponent({
     pauseOnHover: {
       type: Boolean,
       default: true
-    },
-    maxToasts: {
-      type: Number,
-      default: Infinity
     },
     queues: {
       type: Map as PropType<Map<string, NinjaToasterRenderQueue>>,
@@ -58,7 +55,17 @@ export default defineComponent({
   },
   emits: ['close', 'click', 'show'],
   setup(props, { emit }) {
-    const { container, containerId } = useNinjaToasterContainer(props.theme)
+    const theme = computed(() => {
+      return defu(props.theme ?? {}, {
+        containerClass: [],
+        wrapperClass: [],
+        containerId: 'nt-container',
+        maxToasts: Infinity,
+        transition: undefined,
+      })
+    })
+
+    const { container, containerId } = useNinjaToasterContainer(theme)
     const timer = usePausableTimeout(() => {
       close()
     }, props.duration)
@@ -69,11 +76,11 @@ export default defineComponent({
     const rootElement = ref<HTMLElement>()
     let queue: NinjaToasterRenderQueue
 
-    if (props.queues.has(containerId)) {
-      queue = props.queues.get(containerId)!
+    if (props.queues.has(containerId.value)) {
+      queue = props.queues.get(containerId.value)!
     } else {
       queue = createRenderQueue()
-      props.queues.set(containerId, queue)
+      props.queues.set(containerId.value, queue)
     }
 
     const content = computed(() => {
@@ -87,11 +94,11 @@ export default defineComponent({
         return false
       }
 
-      if (props.maxToasts <= 0 || props.maxToasts === Infinity) {
+      if (theme.value.maxToasts <= 0 || theme.value.maxToasts === Infinity) {
         return false
       }
 
-      return props.maxToasts <= container.value.childElementCount
+      return theme.value.maxToasts <= container.value.childElementCount
     }
 
     function toggleTimer(pause: boolean) {
@@ -178,8 +185,8 @@ export default defineComponent({
     function onAfterLeave(el: Element) {
       emit('close')
 
-      if (typeof props.theme?.transition?.onAfterLeave === 'function') {
-        props.theme?.transition.onAfterLeave(el)
+      if (typeof theme.value?.transition?.onAfterLeave === 'function') {
+        theme.value?.transition.onAfterLeave(el)
       }
 
       // force unmount
@@ -218,9 +225,9 @@ export default defineComponent({
             role: 'alert',
             tabindex: 0,
             class:
-              props.theme && Array.isArray(props.theme?.wrapperClass)
-                ? props.theme.wrapperClass.join(' ')
-                : props.theme?.wrapperClass,
+              theme.value && Array.isArray(theme.value?.wrapperClass)
+                ? theme.value.wrapperClass.join(' ')
+                : theme.value?.wrapperClass,
             onMouseover,
             onMouseleave,
             onFocus,
@@ -237,7 +244,7 @@ export default defineComponent({
         Transition,
         {
           ref: rootElement,
-          ...props.theme?.transition || {},
+          ...theme.value?.transition || {},
           onAfterLeave
         },
         () => wrapper
