@@ -36,6 +36,11 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     if (options.installPlugin) {
+      addImports({
+        name: 'useNinjaToaster',
+        as: 'useNinjaToaster',
+        from: resolve(runtimeDir, 'composables/useNinjaToaster')
+      })
       addPlugin(resolve(runtimeDir, 'plugin'))
     }
   }
@@ -43,7 +48,6 @@ export default defineNuxtModule<ModuleOptions>({
 
 declare module '@nuxt/schema' {
   interface AppConfigInput {
-    /** nuxt-icon configuration */
     toaster?: NinjaToasterBaseProps
   }
 }

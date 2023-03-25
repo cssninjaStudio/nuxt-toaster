@@ -2,9 +2,8 @@
 import { h } from 'vue'
 import CustomToast from './components/CustomToast.vue'
 import AdvancedToast from './components/AdvancedToast.vue'
-import { useNuxtApp } from '#app'
 
-const { $nt } = useNuxtApp()
+const $nt = useNinjaToaster()
 let i = 0
 
 function showBasicToast() {
@@ -84,6 +83,35 @@ async function showAdvancedToast() {
 
   toast.el.focus()
 }
+
+function showGlobalToast() {
+  $nt.showComponent('GlobalToast', {
+    props: {
+      type: 'basic',
+      message: 'Hello from GlobalToast module playground!'
+    },
+    options: {
+      theme: {
+        transition: {
+          name: 'toaster'
+        },
+        maxToasts: 5,
+        containerId: 'nt-container-bottom-right',
+        containerClass: [
+          'absolute',
+          'inset-0',
+          'pointer-events-none',
+          'p-4',
+          'flex',
+          'flex-col-reverse',
+          'items-start',
+          'gap-2'
+        ],
+        wrapperClass: 'pointer-events-auto cursor-pointer'
+      }
+    }
+  })
+}
 function clearAllToast() {
   $nt.clearAll()
 }
@@ -112,6 +140,12 @@ function clearTopLeftToast() {
       @click="showAdvancedToast"
     >
       show advanced toast
+    </button>
+    <button
+      class="m-1 rounded border border-slate-200 px-2 py-1"
+      @click="showGlobalToast"
+    >
+      show global toast
     </button>
     <button
       class="m-1 rounded border border-slate-200 px-2 py-1"

@@ -1,4 +1,4 @@
-import { type App, h, render } from 'vue'
+import { type App, type VNode, h, render } from 'vue'
 import { defu } from 'defu'
 
 import type { NinjaToasterTheme, NinjaToasterBaseProps, NinjaToasterProps, NinjaToasterShow } from '../types'
@@ -6,8 +6,12 @@ import type { NinjaToasterRenderQueue } from './queue'
 import { type NinjaToastEventBus, createEventBus } from './events'
 import NinjaToaster from './components/NinjaToaster'
 
-// @ts-ignore
-import { useAppConfig, useNuxtApp } from '#imports'
+import { resolveComponent, useAppConfig, useNuxtApp } from '#imports'
+import type * as _AllComponents from '#components'
+
+type ComponentProps<T> = T extends keyof typeof _AllComponents
+  ? InstanceType<(typeof _AllComponents)[T]>['$props']
+  : undefined
 
 function createElement() {
   // @ts-ignore
@@ -54,9 +58,24 @@ export function createNinjaToaster(
   const events = createEventBus()
   const queues: Map<string, NinjaToasterRenderQueue> = new Map()
 
-  function show(options: NinjaToasterProps | string | number) {
-    const appConfigProps: NinjaToasterBaseProps = (useAppConfig() as any)
-      .toaster
+  function showComponent<T extends keyof typeof _AllComponents>(name: T, {
+    props,
+    children,
+    options,
+  }: {
+    props?: ComponentProps<T>,
+    children?: any
+    options?: Omit<NinjaToasterProps, 'content'>
+  }) {
+    const content = () => h(resolveComponent(name), props, children)
+    return show({
+      ...options,
+      content,
+    })
+  }
+
+  function show(options: NinjaToasterProps | string | number | (() => VNode)) {
+    const appConfigProps = useAppConfig()?.toaster as NinjaToasterBaseProps
     const app = useNuxtApp().vueApp
     const userProps =
       typeof options === 'string' ||
@@ -119,6 +138,7 @@ export function createNinjaToaster(
 
   return {
     show,
+    showComponent,
     clearAll,
     clear
   }
