@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.8](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.3.7...v0.3.8) (2023-03-25)
+
+
+### Features
+
+* export typing ([471519e](https://github.com/cssninjaStudio/nuxt-toaster/commit/471519ec4d7f190924af282a71ff69786643012c))
+
 ### [0.3.7](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.3.6...v0.3.7) (2023-03-25)
 
 ### [0.3.6](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.3.5...v0.3.6) (2023-03-25)
