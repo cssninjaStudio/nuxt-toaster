@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.2](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.3.1...v0.3.2) (2023-03-25)
+
+
+### Features
+
+* add useNinjaToaster composable ([a084ccc](https://github.com/cssninjaStudio/nuxt-toaster/commit/a084ccc8fca679a0c650ff788ce7957825e5837b))
+
 ### [0.3.1](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.3.0...v0.3.1) (2023-03-25)
 
 
