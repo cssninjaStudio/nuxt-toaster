@@ -19,11 +19,11 @@ function showCustomToast() {
       h(CustomToast, {
         message: `Hello ${i} from Nuxt module playground!`
       }),
-    transition: {
-      name: 'toaster'
-    },
-    maxToasts: 5,
     theme: {
+      transition: {
+        name: 'toaster'
+      },
+      maxToasts: 5,
       containerId: 'nt-container-bottom-right',
       containerClass: [
         'absolute',
@@ -48,9 +48,9 @@ async function showAdvancedToast() {
         message: `Hello ${i} from Nuxt module playground!`
       }),
     dismissible: false,
-    maxToasts: 1,
     theme: {
       containerId: 'nt-container-top-left',
+      maxToasts: 1,
       containerClass: [
         'absolute',
         'inset-0',
@@ -70,15 +70,15 @@ async function showAdvancedToast() {
         'focus:outline-2',
         'focus-within:outline',
         'focus-within:outline-2'
-      ]
-    },
-    transition: {
-      enterActiveClass: 'transition duration-300 ease-out',
-      enterFromClass: 'transform translate-x-full opacity-0',
-      enterToClass: 'transform translate-x-0 opacity-100',
-      leaveActiveClass: 'transition duration-300 ease-in',
-      leaveFromClass: 'transform translate-x-0 opacity-100',
-      leaveToClass: 'transform translate-x-full opacity-0'
+      ],
+      transition: {
+        enterActiveClass: 'transition duration-300 ease-out',
+        enterFromClass: 'transform translate-x-full opacity-0',
+        enterToClass: 'transform translate-x-0 opacity-100',
+        leaveActiveClass: 'transition duration-300 ease-in',
+        leaveFromClass: 'transform translate-x-0 opacity-100',
+        leaveToClass: 'transform translate-x-full opacity-0'
+      }
     }
   })
 

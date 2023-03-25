@@ -1,15 +1,16 @@
 import { type App, h, render } from 'vue'
 import { defu } from 'defu'
 
-import type { NinjaToasterTheme } from '../theme'
-import type { NinjaToasterBaseProps, NinjaToasterProps } from '../props'
+import type { NinjaToasterTheme, NinjaToasterBaseProps, NinjaToasterProps, NinjaToasterShow } from '../types'
 import type { NinjaToasterRenderQueue } from './queue'
 import { type NinjaToastEventBus, createEventBus } from './events'
 import NinjaToaster from './components/NinjaToaster'
 
+// @ts-ignore
 import { useAppConfig, useNuxtApp } from '#imports'
 
 function createElement() {
+  // @ts-ignore
   if (process.server) {
     return null
   }
@@ -37,10 +38,6 @@ function mountWithContext(
   }
 }
 
-export interface NinjaToasterShow {
-  el: HTMLElement | null
-  close: () => void
-}
 
 function ensureClassesArray(theme?: NinjaToasterTheme) {
   if (theme?.containerClass && !Array.isArray(theme.containerClass)) {
@@ -92,6 +89,7 @@ export function createNinjaToaster(
         }
       })
 
+      // @ts-ignore
       if (process.server) {
         resolve({
           el: null,

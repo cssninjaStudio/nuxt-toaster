@@ -1,19 +1,33 @@
 import type { Component, TransitionProps } from 'vue'
-import type { NinjaToasterShow } from './runtime/create'
 
-import type { NinjaToasterTheme } from './theme'
+
+export interface ModuleOptions {
+  installPlugin?: boolean
+}
+
+export interface NinjaToasterShow {
+  el: HTMLElement | null
+  close: () => void
+}
 
 export interface NinjaToasterBaseProps {
   duration?: number
-  transition?: TransitionProps
   theme?: NinjaToasterTheme
   dismissible?: boolean
   pauseOnHover?: boolean
-  maxToasts?: number
 }
+
 export interface NinjaToasterProps extends NinjaToasterBaseProps {
   content?: string | number | Record<string, any> | (() => Component)
   onShow?: (toast: NinjaToasterShow) => void
   onClose?: () => void
   onClick?: (event: Event) => void
+}
+
+export interface NinjaToasterTheme {
+  containerId?: string;
+  containerClass?: string | string[];
+  wrapperClass?: string | string[];
+  transition?: TransitionProps
+  maxToasts?: number
 }

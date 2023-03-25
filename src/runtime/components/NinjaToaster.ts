@@ -1,4 +1,4 @@
-import type { PropType } from 'vue'
+import type { PropType, TransitionProps } from 'vue'
 import {
   Transition,
   computed,
@@ -12,7 +12,7 @@ import {
 } from 'vue'
 
 import type { NinjaToastEventBus } from '../events'
-import type { NinjaToasterProps } from '../../props'
+import type { NinjaToasterProps } from '../../types'
 import { usePausableTimeout } from '../composables/usePausableTimeout'
 import { useNinjaToasterContainer } from '../composables/useNinjaToasterContainer'
 import { createNinjaToasterState } from '../composables/useNinjaToasterState'
@@ -30,10 +30,6 @@ export default defineComponent({
     duration: {
       type: Number,
       default: 5000
-    },
-    transition: {
-      type: Object as PropType<NinjaToasterProps['transition']>,
-      default: () => ({} as NinjaToasterProps['transition'])
     },
     theme: {
       type: Object as PropType<NinjaToasterProps['theme']>,
@@ -182,8 +178,8 @@ export default defineComponent({
     function onAfterLeave(el: Element) {
       emit('close')
 
-      if (typeof props.transition?.onAfterLeave === 'function') {
-        props.transition.onAfterLeave(el)
+      if (typeof props.theme?.transition?.onAfterLeave === 'function') {
+        props.theme?.transition.onAfterLeave(el)
       }
 
       // force unmount
@@ -241,7 +237,7 @@ export default defineComponent({
         Transition,
         {
           ref: rootElement,
-          ...props.transition,
+          ...props.theme?.transition || {},
           onAfterLeave
         },
         () => wrapper

@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { tryOnBeforeMount } from '@vueuse/core'
 
-import type { NinjaToasterTheme } from '../../theme'
+import type { NinjaToasterTheme } from '../../types'
 
 export function useNinjaToasterContainer(theme?: NinjaToasterTheme) {
   const container = ref<Element | null>(null)

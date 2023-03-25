@@ -1,20 +1,8 @@
-import { resolve } from 'path'
-import { fileURLToPath } from 'url'
+import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { addImports, addPlugin, defineNuxtModule } from '@nuxt/kit'
-import type { NinjaToasterBaseProps } from './props'
-
-export * from './props'
-
-export interface ModuleOptions {
-  installPlugin?: boolean
-}
-
-declare module '@nuxt/schema' {
-  interface AppConfigInput {
-    /** nuxt-icon configuration */
-    toaster?: NinjaToasterBaseProps
-  }
-}
+import type { NinjaToasterBaseProps } from './types'
+import { ModuleOptions } from '@nuxt/schema'
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -52,3 +40,10 @@ export default defineNuxtModule<ModuleOptions>({
     }
   }
 })
+
+declare module '@nuxt/schema' {
+  interface AppConfigInput {
+    /** nuxt-icon configuration */
+    toaster?: NinjaToasterBaseProps
+  }
+}

@@ -16,9 +16,9 @@
   ],
   "scripts": {
     "prepack": "nuxt-module-build",
-    "dev": "nuxi dev playground",
-    "dev:build": "nuxi build playground",
-    "dev:prepare": "nuxt-module-build --stub && nuxi prepare playground",
+    "dev": "nuxi dev .playground",
+    "dev:build": "nuxi build .playground",
+    "dev:prepare": "nuxt-module-build --stub && nuxi prepare .playground",
     "eslint": "eslint .",
     "eslint:fix": "eslint --fix .",
     "test": "run-p test:*",
@@ -27,23 +27,24 @@
     "release": "standard-version && git push --follow-tags origin main && npm publish"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.0.0",
-    "@vueuse/core": "^9.6.0",
-    "defu": "^6.1.1"
+    "@nuxt/kit": "^3.3.2",
+    "@vueuse/core": "^9.13.0",
+    "defu": "^6.1.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.31.0",
+    "@antfu/eslint-config": "^0.37.0",
     "@nuxt/module-builder": "^0.2.1",
-    "@nuxt/schema": "^3.0.0",
-    "eslint": "8.28.0",
-    "eslint-config-prettier": "8.5.0",
+    "@nuxt/schema": "^3.3.2",
+    "@types/node": "18.15.9",
+    "eslint": "8.36.0",
+    "eslint-config-prettier": "8.8.0",
     "eslint-plugin-prettier-vue": "4.2.0",
-    "eslint-plugin-tailwindcss": "3.7.0",
-    "eslint-plugin-vuejs-accessibility": "2.0.0",
+    "eslint-plugin-tailwindcss": "3.10.1",
+    "eslint-plugin-vuejs-accessibility": "2.1.0",
     "npm-run-all": "^4.1.5",
-    "nuxt": "^3.0.0",
+    "nuxt": "^3.3.2",
     "standard-version": "^9.5.0",
-    "vue": "^3.2.45",
-    "vue-tsc": "^1.0.9"
+    "vue": "^3.2.47",
+    "vue-tsc": "^1.2.0"
   }
 }
