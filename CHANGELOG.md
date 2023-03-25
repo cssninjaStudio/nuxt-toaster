@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.2.1...v0.3.0) (2023-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* move transitions and maxToasts to theme config
+
+### Features
+
+* move transitions and maxToasts to theme config ([9882e67](https://github.com/cssninjaStudio/nuxt-toaster/commit/9882e67430407a698cca724850a919b2da1defa9))
+
 ### [0.2.1](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.2.0...v0.2.1) (2022-11-27)
 
 
