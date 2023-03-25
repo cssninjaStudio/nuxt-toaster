@@ -1,6 +1,6 @@
 {
   "name": "@cssninja/nuxt-toaster",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -24,7 +24,7 @@
     "test": "run-p test:*",
     "test:lint": "run-s eslint",
     "test:tsc": "vue-tsc --noEmit",
-    "release": "standard-version && git push --follow-tags origin main && npm publish"
+    "release": "pnpm prepack && standard-version && git push --follow-tags origin main && npm publish"
   },
   "dependencies": {
     "@nuxt/kit": "^3.3.2",

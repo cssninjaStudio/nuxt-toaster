@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.6](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.3.5...v0.3.6) (2023-03-25)
+
 ### [0.3.5](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.3.4...v0.3.5) (2023-03-25)
 
 
