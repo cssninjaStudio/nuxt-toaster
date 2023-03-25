@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { tryOnBeforeMount, MaybeComputedRef } from '@vueuse/core'
 
 import type { NinjaToasterTheme } from '../../types'

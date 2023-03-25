@@ -1,3 +1,4 @@
+import { useNuxtApp } from '#imports'
 
 type NinjaToasterInstance = ReturnType<typeof createNinjaToaster>
 
