@@ -1,14 +1,13 @@
-import { isRef, ref, computed } from 'vue'
-import { tryOnBeforeMount, MaybeComputedRef } from '@vueuse/core'
+import { computed, ref } from 'vue'
+import type { MaybeRefOrGetter } from '@vueuse/core'
+import { toRef, tryOnBeforeMount } from '@vueuse/core'
 
 import type { NinjaToasterTheme } from '../../types'
 
-export function useNinjaToasterContainer(_theme: MaybeComputedRef<NinjaToasterTheme>) {
-  const theme = computed(() => {
-    if (typeof _theme === 'function')  return _theme()
-    if (isRef(_theme)) return _theme.value
-    return _theme
-  })
+export function useNinjaToasterContainer(
+  _theme: MaybeRefOrGetter<NinjaToasterTheme>
+) {
+  const theme = toRef(_theme)
   const container = ref<Element | null>(null)
   const containerId = computed(() => theme.value?.containerId ?? 'nt-container')
 

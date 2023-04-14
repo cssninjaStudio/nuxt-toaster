@@ -2,7 +2,7 @@ import type { InjectionKey } from 'vue'
 import { computed, inject, provide, ref } from 'vue'
 import { tryOnBeforeUnmount, tryOnMounted } from '@vueuse/core'
 
-import { NinjaToasterState } from '../../types'
+import type { NinjaToasterState } from '../../types'
 
 export const NinjaToasterStateKey = Symbol.for(
   'NinjaToasterState'

@@ -1,4 +1,10 @@
-import type { VNode, DefineComponent, Ref, Component, TransitionProps } from 'vue'
+import type {
+  Component,
+  DefineComponent,
+  Ref,
+  TransitionProps,
+  VNode
+} from 'vue'
 
 export interface ModuleOptions {
   installPlugin?: boolean
@@ -24,9 +30,9 @@ export interface NinjaToasterProps extends NinjaToasterBaseProps {
 }
 
 export interface NinjaToasterTheme {
-  containerId?: string;
-  containerClass?: string | string[];
-  wrapperClass?: string | string[];
+  containerId?: string
+  containerClass?: string | string[]
+  wrapperClass?: string | string[]
   transition?: TransitionProps
   maxToasts?: number
 }
@@ -53,16 +59,24 @@ export interface NinjaToasterState {
 export type DefaultProps = InstanceType<DefineComponent>['$props']
 
 export type ComponentProps<T> = T extends keyof typeof import('#components')
-  ? Omit<InstanceType<(typeof import('#components'))[T]>['$props'], keyof DefaultProps>
+  ? Omit<
+      InstanceType<typeof import('#components')[T]>['$props'],
+      keyof DefaultProps
+    >
   : undefined
 
 export interface NinjaToasterInstance {
-  showComponent: <T extends keyof typeof import('#components')>(name: T, params: {
-    props?: ComponentProps<T>,
-    children?: any
-    options?: Omit<NinjaToasterProps, 'content'>
-  }) => Promise<NinjaToasterShow>
-  show: (options: NinjaToasterProps | string | number | (() => VNode)) => Promise<NinjaToasterShow>
+  showComponent: <T extends keyof typeof import('#components')>(
+    name: T,
+    params: {
+      props?: ComponentProps<T>
+      children?: any
+      options?: Omit<NinjaToasterProps, 'content'>
+    }
+  ) => Promise<NinjaToasterShow>
+  show: (
+    options: NinjaToasterProps | string | number | (() => VNode)
+  ) => Promise<NinjaToasterShow>
   clear: (theme: NinjaToasterTheme | string) => void
   clearAll: () => void
 }

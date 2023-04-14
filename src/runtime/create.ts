@@ -1,7 +1,14 @@
 import { type App, type VNode, h, render } from 'vue'
 import { defu } from 'defu'
 
-import type { NinjaToasterTheme, NinjaToasterBaseProps, NinjaToasterProps, NinjaToasterShow, NinjaToasterInstance, ComponentProps } from '../types'
+import type {
+  ComponentProps,
+  NinjaToasterBaseProps,
+  NinjaToasterInstance,
+  NinjaToasterProps,
+  NinjaToasterShow,
+  NinjaToasterTheme
+} from '../types'
 import type { NinjaToasterRenderQueue } from './queue'
 import { type NinjaToastEventBus, createEventBus } from './events'
 import NinjaToaster from './components/NinjaToaster'
@@ -36,7 +43,6 @@ function mountWithContext(
   }
 }
 
-
 function ensureClassesArray(theme?: NinjaToasterTheme) {
   if (theme?.containerClass && !Array.isArray(theme.containerClass)) {
     theme.containerClass = [theme.containerClass]
@@ -52,19 +58,22 @@ export function createNinjaToaster(
   const events = createEventBus()
   const queues: Map<string, NinjaToasterRenderQueue> = new Map()
 
-  function showComponent<T extends keyof typeof import('#components')>(name: T, {
-    props,
-    children,
-    options,
-  }: {
-    props?: ComponentProps<T>,
-    children?: any
-    options?: Omit<NinjaToasterProps, 'content'>
-  }) {
+  function showComponent<T extends keyof typeof import('#components')>(
+    name: T,
+    {
+      props,
+      children,
+      options
+    }: {
+      props?: ComponentProps<T>
+      children?: any
+      options?: Omit<NinjaToasterProps, 'content'>
+    }
+  ) {
     const content = () => h(resolveComponent(name), props, children)
     return show({
       ...options,
-      content,
+      content
     })
   }
 

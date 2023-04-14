@@ -62,7 +62,7 @@ export default defineComponent({
         wrapperClass: [],
         containerId: 'nt-container',
         maxToasts: Infinity,
-        transition: undefined,
+        transition: undefined
       })
     })
 
@@ -245,7 +245,7 @@ export default defineComponent({
         Transition,
         {
           ref: rootElement,
-          ...theme.value?.transition || {},
+          ...(theme.value?.transition || {}),
           onAfterLeave
         },
         () => wrapper
