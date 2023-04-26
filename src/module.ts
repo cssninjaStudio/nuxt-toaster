@@ -1,6 +1,10 @@
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { addImports, addPlugin, defineNuxtModule } from '@nuxt/kit'
+import {
+  addImports,
+  addPlugin,
+  createResolver,
+  defineNuxtModule
+} from '@nuxt/kit'
+
 import type { ModuleOptions, NinjaToasterBaseProps } from './types'
 
 export * from './types'
@@ -17,18 +21,20 @@ export default defineNuxtModule<ModuleOptions>({
     installPlugin: true
   },
   setup(options, nuxt) {
-    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
+    const { resolve } = createResolver(import.meta.url)
+
+    const runtimeDir = resolve('runtime')
     nuxt.options.build.transpile.push(runtimeDir)
 
     addImports({
       name: 'useNinjaToasterState',
       as: 'useNinjaToasterState',
-      from: resolve(runtimeDir, 'composables/useNinjaToasterState')
+      from: resolve(runtimeDir, 'composables', 'useNinjaToasterState')
     })
     addImports({
       name: 'useNinjaToasterProgress',
       as: 'useNinjaToasterProgress',
-      from: resolve(runtimeDir, 'composables/useNinjaToasterState')
+      from: resolve(runtimeDir, 'composables', 'useNinjaToasterState')
     })
     addImports({
       name: 'createNinjaToaster',
@@ -40,7 +46,7 @@ export default defineNuxtModule<ModuleOptions>({
       addImports({
         name: 'useNinjaToaster',
         as: 'useNinjaToaster',
-        from: resolve(runtimeDir, 'composables/useNinjaToaster')
+        from: resolve(runtimeDir, 'composables', 'useNinjaToaster')
       })
       addPlugin(resolve(runtimeDir, 'plugin'))
     }
