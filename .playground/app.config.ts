@@ -1,7 +1,7 @@
 export default defineAppConfig({
   toaster: {
     theme: {
-      maxToasts: 10
-    }
-  }
+      maxToasts: 10,
+    },
+  },
 })

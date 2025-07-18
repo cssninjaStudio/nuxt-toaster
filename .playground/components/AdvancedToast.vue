@@ -15,9 +15,9 @@ const { percent, closeIn, endAt } = useNinjaToasterProgress()
       <div
         class="h-4 rounded-b bg-slate-600"
         :style="{
-          width: `${percent * 100}%`
+          width: `${percent * 100}%`,
         }"
-      ></div>
+      />
     </div>
 
     <button

@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type NinjaToasterEventCallback = (...args: any) => void
 
 export function createEventBus() {
@@ -19,6 +20,7 @@ export function createEventBus() {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function emit(name: string, ...args: any) {
     if (queue[name]) {
       queue[name].forEach((callback) => {
@@ -31,7 +33,7 @@ export function createEventBus() {
     queue,
     on,
     off,
-    emit
+    emit,
   }
 }
 

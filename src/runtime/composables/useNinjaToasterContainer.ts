@@ -5,7 +5,7 @@ import { toRef, tryOnBeforeMount } from '@vueuse/core'
 import type { NinjaToasterTheme } from '../../types'
 
 export function useNinjaToasterContainer(
-  _theme: MaybeRefOrGetter<NinjaToasterTheme>
+  _theme: MaybeRefOrGetter<NinjaToasterTheme>,
 ) {
   const theme = toRef(_theme)
   const container = ref<Element | null>(null)
@@ -30,6 +30,6 @@ export function useNinjaToasterContainer(
 
   return {
     container,
-    containerId
+    containerId,
   }
 }

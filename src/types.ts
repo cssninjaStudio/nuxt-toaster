@@ -3,7 +3,7 @@ import type {
   DefineComponent,
   Ref,
   TransitionProps,
-  VNode
+  VNode,
 } from 'vue'
 
 export interface ModuleOptions {
@@ -23,6 +23,7 @@ export interface NinjaToasterBaseProps {
 }
 
 export interface NinjaToasterProps extends NinjaToasterBaseProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   content?: string | number | Record<string, any> | (() => Component)
   onShow?: (toast: NinjaToasterShow) => void
   onClose?: () => void
@@ -70,6 +71,7 @@ export interface NinjaToasterInstance {
     name: T,
     params: {
       props?: ComponentProps<T>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       children?: any
       options?: Omit<NinjaToasterProps, 'content'>
     }

@@ -7,7 +7,7 @@ import type {
   NinjaToasterInstance,
   NinjaToasterProps,
   NinjaToasterShow,
-  NinjaToasterTheme
+  NinjaToasterTheme,
 } from '../types'
 import type { NinjaToasterRenderQueue } from './queue'
 import { type NinjaToastEventBus, createEventBus } from './events'
@@ -16,7 +16,7 @@ import NinjaToaster from './components/NinjaToaster'
 import { resolveComponent, useAppConfig, useNuxtApp } from '#imports'
 
 function createElement() {
-  if (process.server) {
+  if (import.meta.server) {
     return null
   }
 
@@ -25,11 +25,12 @@ function createElement() {
 
 function mountWithContext(
   app: App,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   component: any,
   props: NinjaToasterProps & {
     events: NinjaToastEventBus
     queues: Map<string, NinjaToasterRenderQueue>
-  }
+  },
 ) {
   const el = createElement()
 
@@ -53,7 +54,7 @@ function ensureClassesArray(theme?: NinjaToasterTheme) {
 }
 
 export function createNinjaToaster(
-  createProps: Omit<NinjaToasterProps, 'content'> = {}
+  createProps: Omit<NinjaToasterProps, 'content'> = {},
 ): NinjaToasterInstance {
   const events = createEventBus()
   const queues: Map<string, NinjaToasterRenderQueue> = new Map()
@@ -63,27 +64,28 @@ export function createNinjaToaster(
     {
       props,
       children,
-      options
+      options,
     }: {
       props?: ComponentProps<T>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       children?: any
       options?: Omit<NinjaToasterProps, 'content'>
-    }
+    },
   ) {
     const content = () => h(resolveComponent(name), props, children)
     return show({
       ...options,
-      content
+      content,
     })
   }
 
   function show(options: NinjaToasterProps | string | number | (() => VNode)) {
     const appConfigProps = useAppConfig()?.toaster as NinjaToasterBaseProps
     const app = useNuxtApp().vueApp
-    const userProps =
-      typeof options === 'string' ||
-      typeof options === 'number' ||
-      typeof options === 'function'
+    const userProps
+      = typeof options === 'string'
+        || typeof options === 'number'
+        || typeof options === 'function'
         ? { content: options }
         : options
 
@@ -94,7 +96,7 @@ export function createNinjaToaster(
     const props: NinjaToasterProps = defu(
       userProps,
       createProps,
-      appConfigProps
+      appConfigProps,
     )
 
     return new Promise<NinjaToasterShow>((resolve) => {
@@ -108,13 +110,13 @@ export function createNinjaToaster(
           if (props.onShow) {
             props.onShow(toast)
           }
-        }
+        },
       })
 
-      if (process.server) {
+      if (import.meta.server) {
         resolve({
           el: null,
-          close: () => {}
+          close: () => {},
         })
       }
     })
@@ -129,8 +131,8 @@ export function createNinjaToaster(
   }
 
   function clear(theme: NinjaToasterTheme | string) {
-    const containerId =
-      typeof theme === 'string' ? theme : theme.containerId ?? 'nt-container'
+    const containerId
+      = typeof theme === 'string' ? theme : theme.containerId ?? 'nt-container'
 
     events.emit(`clear-${containerId}`)
     if (queues.has(containerId)) {
@@ -142,6 +144,6 @@ export function createNinjaToaster(
     show,
     showComponent,
     clearAll,
-    clear
+    clear,
   }
 }

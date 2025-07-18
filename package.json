@@ -5,13 +5,18 @@
   "type": "module",
   "exports": {
     ".": {
-      "types": "./dist/types.d.ts",
-      "import": "./dist/module.mjs",
-      "require": "./dist/module.cjs"
+      "types": "./dist/types.d.mts",
+      "import": "./dist/module.mjs"
     }
   },
-  "main": "./dist/module.cjs",
-  "types": "./dist/types.d.ts",
+  "main": "./dist/module.mjs",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/types.d.mts"
+      ]
+    }
+  },
   "files": [
     "dist"
   ],
@@ -19,38 +24,34 @@
     "failOnWarn": false
   },
   "scripts": {
-    "prepack": "nuxt-module-build",
+    "prepack": "nuxt-module-build build",
     "dev": "nuxi dev .playground",
     "dev:build": "nuxi build .playground",
-    "dev:prepare": "nuxt-module-build --stub && nuxi prepare .playground",
-    "eslint": "eslint --ext .ts,.vue .",
-    "eslint:fix": "eslint --ext .ts,.vue --fix .",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare .playground",
+    "eslint": "eslint .",
+    "eslint:fix": "eslint --fix .",
     "test": "run-p test:*",
     "test:lint": "run-s eslint",
-    "test:tsc": "vue-tsc --noEmit",
+    "test:types": "vue-tsc --noEmit && cd .playground && vue-tsc --noEmit",
     "release": "pnpm prepack && standard-version && git push --follow-tags origin main && npm publish"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.4.2",
-    "@vueuse/core": "^10.1.0",
-    "defu": "^6.1.2"
+    "@nuxt/kit": "^4.0.0",
+    "@vueuse/core": "^13.5.0",
+    "defu": "^6.1.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.38.5",
-    "@nuxt/module-builder": "^0.3.0",
-    "@nuxt/schema": "^3.4.2",
-    "@types/node": "18.16.1",
-    "eslint": "8.39.0",
-    "eslint-config-prettier": "8.8.0",
-    "eslint-plugin-prettier-vue": "4.2.0",
-    "eslint-plugin-tailwindcss": "3.11.0",
-    "eslint-plugin-vuejs-accessibility": "2.1.0",
+    "@nuxt/module-builder": "^1.0.1",
+    "@nuxt/schema": "^4.0.0",
+    "@nuxt/eslint-config": "^1.5.2",
+    "@types/node": "24.0.14",
+    "eslint": "9.31.0",
     "npm-run-all": "^4.1.5",
-    "nuxt": "^3.4.2",
+    "nuxt": "^4.0.0",
     "standard-version": "^9.5.0",
-    "typescript": "^5.0.4",
-    "vue": "^3.2.47",
-    "vue-tsc": "^1.4.4"
+    "typescript": "^5.8.3",
+    "vue": "^3.5.17",
+    "vue-tsc": "^3.0.2"
   },
   "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0"
 }

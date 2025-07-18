@@ -16,11 +16,11 @@ function showCustomToast() {
   $nt.show({
     content: () =>
       h(CustomToast, {
-        message: `Hello ${i} from Nuxt module playground!`
+        message: `Hello ${i} from Nuxt module playground!`,
       }),
     theme: {
       transition: {
-        name: 'toaster'
+        name: 'toaster',
       },
       maxToasts: 5,
       containerId: 'nt-container-bottom-right',
@@ -32,10 +32,10 @@ function showCustomToast() {
         'flex',
         'flex-col-reverse',
         'items-start',
-        'gap-2'
+        'gap-2',
       ],
-      wrapperClass: 'pointer-events-auto cursor-pointer'
-    }
+      wrapperClass: 'pointer-events-auto cursor-pointer',
+    },
   })
 }
 
@@ -44,7 +44,7 @@ async function showAdvancedToast() {
   const toast = await $nt.show({
     content: () =>
       h(AdvancedToast, {
-        message: `Hello ${i} from Nuxt module playground!`
+        message: `Hello ${i} from Nuxt module playground!`,
       }),
     dismissible: false,
     theme: {
@@ -58,7 +58,7 @@ async function showAdvancedToast() {
         'flex',
         'flex-col',
         'items-end',
-        'gap-2'
+        'gap-2',
       ],
       wrapperClass: [
         'pointer-events-auto',
@@ -68,7 +68,7 @@ async function showAdvancedToast() {
         'focus:outline',
         'focus:outline-2',
         'focus-within:outline',
-        'focus-within:outline-2'
+        'focus-within:outline-2',
       ],
       transition: {
         enterActiveClass: 'transition duration-300 ease-out',
@@ -76,9 +76,9 @@ async function showAdvancedToast() {
         enterToClass: 'transform translate-x-0 opacity-100',
         leaveActiveClass: 'transition duration-300 ease-in',
         leaveFromClass: 'transform translate-x-0 opacity-100',
-        leaveToClass: 'transform translate-x-full opacity-0'
-      }
-    }
+        leaveToClass: 'transform translate-x-full opacity-0',
+      },
+    },
   })
 
   toast.el.focus()
@@ -88,12 +88,12 @@ function showGlobalToast() {
   $nt.showComponent('GlobalToast', {
     props: {
       type: 'basic',
-      message: 'Hello from GlobalToast module playground!'
+      message: 'Hello from GlobalToast module playground!',
     },
     options: {
       theme: {
         transition: {
-          name: 'toaster'
+          name: 'toaster',
         },
         maxToasts: 5,
         containerId: 'nt-container-bottom-right',
@@ -105,11 +105,11 @@ function showGlobalToast() {
           'flex',
           'flex-col-reverse',
           'items-start',
-          'gap-2'
+          'gap-2',
         ],
-        wrapperClass: 'pointer-events-auto cursor-pointer'
-      }
-    }
+        wrapperClass: 'pointer-events-auto cursor-pointer',
+      },
+    },
   })
 }
 function clearAllToast() {

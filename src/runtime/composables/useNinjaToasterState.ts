@@ -5,7 +5,7 @@ import { tryOnBeforeUnmount, tryOnMounted } from '@vueuse/core'
 import type { NinjaToasterState } from '../../types'
 
 export const NinjaToasterStateKey = Symbol.for(
-  'NinjaToasterState'
+  'NinjaToasterState',
 ) as InjectionKey<NinjaToasterState>
 
 export function createNinjaToasterState(state: NinjaToasterState) {
@@ -41,7 +41,7 @@ export function useNinjaToasterProgress() {
     return Math.round(ratio * 1000) / 1000
   })
 
-  let interval: any
+  let interval: ReturnType<typeof setInterval> | undefined
   tryOnMounted(() => {
     interval = setInterval(() => {
       if (!state.isHovered.value) {
@@ -57,6 +57,6 @@ export function useNinjaToasterProgress() {
   return {
     percent,
     endAt,
-    closeIn
+    closeIn,
   }
 }

@@ -66,7 +66,7 @@ export function createRenderQueue() {
   return {
     add,
     remove,
-    clear
+    clear,
   }
 }
 

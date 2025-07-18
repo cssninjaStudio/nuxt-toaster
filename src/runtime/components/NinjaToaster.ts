@@ -9,7 +9,7 @@ import {
   onMounted,
   ref,
   vShow,
-  withDirectives
+  withDirectives,
 } from 'vue'
 import { defu } from 'defu'
 
@@ -27,32 +27,32 @@ export default defineComponent({
       type: [String, Number, Object, Function] as PropType<
         NinjaToasterProps['content']
       >,
-      required: true
+      required: true,
     },
     duration: {
       type: Number,
-      default: 5000
+      default: 5000,
     },
     theme: {
       type: Object as PropType<NinjaToasterProps['theme']>,
-      default: () => ({})
+      default: () => ({}),
     },
     dismissible: {
       type: Boolean,
-      default: true
+      default: true,
     },
     pauseOnHover: {
       type: Boolean,
-      default: true
+      default: true,
     },
     queues: {
       type: Map as PropType<Map<string, NinjaToasterRenderQueue>>,
-      default: () => new Map()
+      default: () => new Map(),
     },
     events: {
       type: Object as PropType<NinjaToastEventBus>,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   emits: ['close', 'click', 'show'],
   setup(props, { emit }) {
@@ -62,7 +62,7 @@ export default defineComponent({
         wrapperClass: [],
         containerId: 'nt-container',
         maxToasts: Infinity,
-        transition: undefined
+        transition: undefined,
       })
     })
 
@@ -79,7 +79,8 @@ export default defineComponent({
 
     if (props.queues.has(containerId.value)) {
       queue = props.queues.get(containerId.value)!
-    } else {
+    }
+    else {
       queue = createRenderQueue()
       props.queues.set(containerId.value, queue)
     }
@@ -125,7 +126,7 @@ export default defineComponent({
       if (shouldQueue()) {
         unqueue.value = queue.add({
           until: () => !shouldQueue(),
-          callback: show
+          callback: show,
         })
         return
       }
@@ -143,7 +144,7 @@ export default defineComponent({
 
       emit('show', {
         el: rootElement.value,
-        close
+        close,
       })
     }
 
@@ -193,7 +194,8 @@ export default defineComponent({
       // force unmount
       if (typeof rootElement.value?.remove !== 'undefined') {
         rootElement.value?.remove()
-      } else {
+      }
+      else {
         rootElement.value?.parentNode?.removeChild(rootElement.value)
       }
     }
@@ -215,7 +217,7 @@ export default defineComponent({
       isHovered,
       isActive,
       click: onClick,
-      close
+      close,
     })
 
     return () => {
@@ -234,11 +236,11 @@ export default defineComponent({
             onFocus,
             onBlur,
             onKeydown,
-            onClick
+            onClick,
           },
-          h(Suspense, null, content.value)
+          h(Suspense, null, content.value),
         ),
-        [[vShow, isActive.value]]
+        [[vShow, isActive.value]],
       )
 
       return h(
@@ -246,10 +248,10 @@ export default defineComponent({
         {
           ref: rootElement,
           ...(theme.value?.transition || {}),
-          onAfterLeave
+          onAfterLeave,
         },
-        () => wrapper
+        () => wrapper,
       )
     }
-  }
+  },
 })
