@@ -14,7 +14,7 @@ export default defineNuxtModule<ModuleOptions>({
     name: '@cssninja/nuxt-toaster',
     configKey: 'toaster',
     compatibility: {
-      nuxt: '^3.0.0-rc.9'
+      nuxt: '^3.0.0-0 || ^4.0.0-0'
     }
   },
   defaults: {
