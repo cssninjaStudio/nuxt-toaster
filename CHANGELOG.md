@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.3.12...v0.4.0) (2025-07-18)
+
+
+### Features
+
+* add nuxt 4 compatibility ([937ca2e](https://github.com/cssninjaStudio/nuxt-toaster/commit/937ca2e950fe7a4661013555f0b80dc3a04fa2a9))
+
 ### [0.3.12](https://github.com/cssninjaStudio/nuxt-toaster/compare/v0.3.11...v0.3.12) (2023-04-26)
 
 
